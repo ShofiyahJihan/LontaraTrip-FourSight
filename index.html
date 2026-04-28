@@ -1,375 +1,1243 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-  <title>LontaraTrip</title>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet"/>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-    body {
-      font-family: 'Source Sans 3', sans-serif;
-      background: #12100c;
-      display: flex; justify-content: center; align-items: flex-start;
-      min-height: 100vh;
-    }
-    .app {
-      width: 100%;
-      max-width: 390px;
-      min-height: 100vh;
-      background: #fffbe5;
-      position: relative;
-      overflow-x: hidden;
-    }
-    #page-landing { display: block; }
-    #page-login   { display: none; }
-    .navbar {
-      display: flex; align-items: center;
-      justify-content: space-between;
-      padding: 0 12px;
-      height: 50px;
-      background: #fffbe5;
-      border-bottom: 1px solid rgba(0,0,0,.07);
-      position: sticky; top: 0; z-index: 50;
-    }
-    .navbar-left { display: flex; align-items: center; gap: 7px; }
-    .nav-brand { font-weight: 700; font-size: .9rem; color: #1a1a1a; white-space: nowrap; }
-    .navbar-links { display: flex; gap: 10px; font-size: .7rem; font-weight: 600; }
-    .navbar-links a { text-decoration: none; color: #222; }
-    .btn-nav-login {
-      background: #3d5a2e; color: white;
-      border: none; border-radius: 6px;
-      padding: 6px 14px; font-size: .72rem; font-weight: 700;
-      font-family: inherit; cursor: pointer; white-space: nowrap;
-    }
-    .hero { position: relative; height: 215px; overflow: hidden; }
-    .hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .hero-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(10,25,8,.25) 0%, rgba(10,25,8,.72) 100%);
-    }
-    .hero-text {
-      position: absolute; bottom: 24px; left: 0; right: 0;
-      text-align: center; padding: 0 18px;
-    }
-    .hero-title {
-      font-family: 'Merriweather', serif; font-weight: 900;
-      font-size: 1.25rem; color: white; line-height: 1.3;
-      margin-bottom: 5px; text-shadow: 0 2px 6px rgba(0,0,0,.4);
-    }
-    .hero-sub { font-size: .75rem; color: rgba(255,255,255,.88); margin-bottom: 14px; line-height: 1.5; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>LontaraTrip</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════
+   RESET & BASE
+═══════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
 
-    /* Tombol Buat Itinerary — tanpa fungsi, tampilan tetap sama */
-    .btn-hero {
-      background: #3d5a2e; color: white; border: none;
-      border-radius: 7px; padding: 9px 26px;
-      font-size: .84rem; font-weight: 700; font-family: inherit;
-      cursor: default; /* tidak ada pointer klik */
-    }
 
-    .section-smart { background: white; padding: 18px 14px 22px; }
-    .section-title {
-      font-family: 'Merriweather', serif; font-weight: 700;
-      font-size: .95rem; text-align: center; color: #1a1a1a; margin-bottom: 14px;
-    }
-    .dest-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; margin-bottom: 6px; }
-    .dest-item { cursor: pointer; }
-    .dest-item img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 6px; display: block; }
-    .dest-name { font-size: .62rem; font-weight: 600; color: #111; margin-top: 3px; line-height: 1.2; }
-    .dest-type { font-size: .58rem; color: #888; }
-    .cat-row { display: grid; grid-template-columns: repeat(4,1fr); gap: 6px; margin-top: 4px; }
-    .cat-item { position: relative; border-radius: 7px; overflow: hidden; cursor: pointer; aspect-ratio: 1/1; }
-    .cat-item img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(.70); }
-    .cat-label {
-      position: absolute; bottom: 5px; left: 0; right: 0;
-      text-align: center; font-size: .64rem; font-weight: 700;
-      color: white; text-shadow: 0 1px 4px rgba(0,0,0,.6);
-    }
-    footer { background: #FFFBE5; padding: 18px 14px 12px; border-top: 1px solid rgba(0,0,0,.08); }
-    .footer-top { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px; }
-    .footer-logo { flex-shrink: 0; }
-    .footer-desc { font-size: .7rem; color: #555; line-height: 1.55; }
-    .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-    .fcol-title { font-size: .7rem; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
-    .fcol-item { font-size: .67rem; color: #555; margin-bottom: 3px; line-height: 1.4; }
-    .fcol-item a { color: #555; text-decoration: none; }
-    .social-row { display: flex; gap: 6px; margin-top: 6px; }
-    .soc-btn {
-      width: 28px; height: 28px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: .62rem; font-weight: 700; color: white; cursor: pointer;
-    }
-    .soc-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
-    .soc-wa { background: #25d366; }
-    .footer-copy { border-top: 1px solid rgba(0,0,0,.09); padding-top: 9px; font-size: .6rem; color: #999; text-align: center; line-height: 1.8; }
-    .heart { color: #e53935; }
+:root {
+  --green:       #3B6E50;
+  --green-dark:  #2d5a3d;
+  --green-light: #e8f5e9;
+  --cream:       #FFFBE5;
+  --black:       #1a1a1a;
+  --gray:        #555;
+  --gray-bg:     #f5f5f5;
+  --border:      rgba(0,0,0,.08);
+  --shadow:      0 1px 8px rgba(0,0,0,.08);
+  --shadow-md:   0 2px 14px rgba(0,0,0,.13);
+}
 
-    /* LOGIN PAGE */
-    #page-login { min-height: 100vh; background: #fffBE5; flex-direction: column; }
-    .login-topbar { display: flex; align-items: center; gap: 10px; padding: 16px 16px 12px; border-bottom: 1px solid rgba(0,0,0,.07); }
-    .login-brand-name { font-weight: 700; font-size: 1rem; color: #1a1a1a; }
-    .login-body { flex: 1; display: flex; align-items: flex-start; justify-content: center; padding: 28px 18px 32px; }
-    .login-card { background: white; border-radius: 12px; padding: 26px 22px 22px; width: 100%; box-shadow: 0 2px 16px rgba(0,0,0,.09); }
-    .login-title { font-family: 'Merriweather', serif; font-weight: 900; font-size: 1.35rem; color: #1a1a1a; margin-bottom: 5px; }
-    .login-sub { font-size: .78rem; color: #777; margin-bottom: 20px; line-height: 1.5; }
-    .inp { width: 100%; padding: 10px 12px; border: 1.5px solid #ccc; border-radius: 6px; font-size: .86rem; font-family: inherit; margin-bottom: 9px; outline: none; color: #1a1a1a; transition: border-color .2s; background: white; }
-    .inp:focus { border-color: #3d5a2e; }
-    .inp.err { border-color: #d32f2f; }
-    .err-txt { font-size: .7rem; color: #d32f2f; margin-top: -5px; margin-bottom: 7px; display: none; }
-    .err-txt.show { display: block; }
-    .login-options { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-    .chk-label { display: flex; align-items: center; gap: 7px; font-size: .8rem; color: #333; cursor: pointer; }
-    .chk-label input { accent-color: #3d5a2e; width: 15px; height: 15px; }
-    .forgot { font-size: .8rem; color: #333; font-weight: 600; text-decoration: none; }
-    .btn-submit { width: 100%; padding: 12px; background: #1a1a1a; color: white; border: 2px solid #1a1a1a; border-radius: 8px; font-size: .95rem; font-weight: 700; font-family: 'Merriweather', serif; cursor: pointer; margin-bottom: 13px; transition: background .2s; }
-    .btn-submit:hover { background: #3d5a2e; border-color: #3d5a2e; }
-    .or-divider { display: flex; align-items: center; gap: 10px; color: #aaa; font-size: .78rem; margin-bottom: 11px; }
-    .or-divider::before, .or-divider::after { content: ''; flex: 1; height: 1px; background: #e0e0e0; }
-    .btn-goog { width: 100%; padding: 11px; background: white; color: #333; border: 1.5px solid #ccc; border-radius: 8px; font-size: .86rem; font-weight: 600; font-family: inherit; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 9px; transition: background .15s; }
-    .btn-goog:hover { background: #f5f5f5; }
-    .btn-goog svg { width: 17px; height: 17px; }
-    .signup-line { text-align: center; font-size: .8rem; color: #777; margin-top: 16px; }
-    .signup-line a { color: #1a1a1a; font-weight: 700; text-decoration: none; }
-    .loading-overlay { position: fixed; inset: 0; z-index: 999; background: rgba(20,20,20,.82); display: none; align-items: center; justify-content: center; }
-    .loading-overlay.show { display: flex; }
-    .loading-box { background: #3d5a2e; border-radius: 18px; width: 150px; height: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
-    .dots-grid { display: grid; grid-template-columns: repeat(3,9px); gap: 5px; }
-    .dots-grid span { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.3); animation: dp 1.3s ease-in-out infinite; }
-    .dots-grid span:nth-child(1){animation-delay:.0s} .dots-grid span:nth-child(2){animation-delay:.13s} .dots-grid span:nth-child(3){animation-delay:.26s}
-    .dots-grid span:nth-child(4){animation-delay:.39s} .dots-grid span:nth-child(5){animation-delay:.52s} .dots-grid span:nth-child(6){animation-delay:.65s}
-    .dots-grid span:nth-child(7){animation-delay:.78s} .dots-grid span:nth-child(8){animation-delay:.91s} .dots-grid span:nth-child(9){animation-delay:1.04s}
-    @keyframes dp { 0%,80%,100%{background:rgba(255,255,255,.25)} 40%{background:rgba(255,255,255,1)} }
-    .loading-txt { color: white; text-align: center; line-height: 1.5; font-size: .76rem; }
-    .loading-txt strong { display: block; font-size: .88rem; margin-bottom: 2px; }
-  </style>
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+
+/* App wrapper */
+.app {
+  width: 100%;
+  max-width: 440px;
+  min-height: 100vh;
+  background: #ffffff;
+  position: relative;
+  overflow-x: hidden;
+}
+
+
+/* Page system */
+.page { display: none; }
+.page.active { display: block; background: #ffffff; }
+#page-login.active { display: flex; flex-direction: column; min-height: 100vh; background: #ffffff; }
+#page-home.active { background: #ffffff; }
+#page-landing.active { background: var(--cream); }
+#page-rekom.active { background: var(--gray-bg); }
+
+
+/* ═══════════════════════════════
+   SHARED NAVBAR
+═══════════════════════════════ */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  height: 58px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0 1px 10px rgba(0,0,0,.07);
+}
+
+
+/* Logo group */
+.nav-logo { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.logo-circle {
+  width: 36px; height: 36px; border-radius: 50%;
+  overflow: hidden; background: var(--green);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.logo-circle img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.logo-fb { color: #fff; font-size: 16px; font-weight: 800; font-family: serif; display: none; }
+.nav-brand { font-size: 14px; font-weight: 700; color: var(--black); white-space: nowrap; }
+
+
+/* Nav links */
+.nav-links { display: flex; gap: 14px; list-style: none; }
+.nav-links li {
+  font-size: 11px; font-weight: 600; color: var(--black);
+  cursor: pointer; padding: 2px 0;
+  white-space: nowrap; transition: color .18s;
+}
+.nav-links li:hover { color: var(--green); }
+.nav-links li.active { color: var(--green); border-bottom: 2px solid var(--green); }
+
+
+/* Landing page navbar stays cream */
+#page-landing .navbar {
+  background: var(--cream);
+}
+#page-landing { background: var(--cream) !important; }
+
+
+.btn-login {
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .18s;
+  flex-shrink: 0;
+}
+.btn-login:hover { background: var(--green-dark); }
+
+
+/* Profile button */
+.profile-wrap { position: relative; flex-shrink: 0; }
+.nav-profile {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 2.5px solid var(--green);
+  background: var(--green-light);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; overflow: hidden;
+  transition: box-shadow .2s;
+}
+.nav-profile:hover { box-shadow: 0 0 0 3px rgba(59,110,80,.18); }
+.nav-profile img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: none; }
+.profile-badge {
+  position: absolute; bottom: -1px; right: -1px;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--green); border: 2px solid #fff;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+}
+.profile-badge svg { width: 7px; height: 7px; fill: white; }
+#profileInput { display: none; }
+
+
+/* ═══════════════════════════════
+   LANDING PAGE
+═══════════════════════════════ */
+/* Hero */
+.hero {
+  position: relative; height: 265px; overflow: hidden;
+}
+.hero > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(5,20,8,.2) 0%, rgba(5,20,8,.68) 100%);
+}
+.hero-content {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 0 28px 0;
+  padding-top: 16px;
+}
+.hero-title {
+  font-size: 22px; font-weight: 800; color: #fff;
+  line-height: 1.25; margin-bottom: 8px;
+  text-shadow: 0 2px 10px rgba(0,0,0,.45);
+  letter-spacing: -.02em;
+}
+.hero-sub {
+  font-size: 11px; color: rgba(255,255,255,.88);
+  margin-bottom: 20px; line-height: 1.55;
+}
+.btn-hero {
+  background: var(--green); color: #fff; border: none;
+  border-radius: 8px; padding: 11px 36px;
+  font-size: 13px; font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer; transition: background .18s;
+  letter-spacing: .01em;
+}
+.btn-hero:hover { background: var(--green-dark); }
+
+
+/* Smart Itinerary section on landing */
+.section-smart { background: #fff; padding: 22px 16px 26px; }
+.section-heading {
+  font-size: 15px; font-weight: 700; color: var(--black);
+  text-align: center; margin-bottom: 18px;
+}
+
+
+/* Destination grid 4 col */
+.dest-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-bottom: 8px; }
+.dest-item { cursor: pointer; }
+.dest-item img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; display: block; }
+.dest-name { font-size: 9px; font-weight: 600; color: var(--black); margin-top: 4px; line-height: 1.3; }
+.dest-type { font-size: 8.5px; color: #999; }
+
+
+/* Category grid */
+.cat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-top: 6px; }
+.cat-item { position: relative; border-radius: 8px; overflow: hidden; cursor: pointer; aspect-ratio: 1/1; }
+.cat-item img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(.65); }
+.cat-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 7px 4px;
+  text-align: center; font-size: 9.5px; font-weight: 700; color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,.5);
+  background: linear-gradient(0deg, rgba(0,0,0,.42) 0%, transparent 100%);
+}
+
+
+/* ═══════════════════════════════
+   FOOTER (shared)
+═══════════════════════════════ */
+.footer {
+  background: var(--cream);
+  padding: 20px 16px 14px;
+  border-top: 1px solid var(--border);
+}
+.footer-top {
+  display: flex; gap: 12px; align-items: flex-start; margin-bottom: 16px;
+}
+.footer-logo-img { width: 34px; height: 34px; object-fit: cover; border-radius: 50%; flex-shrink: 0; }
+.footer-desc { font-size: 10px; color: var(--gray); line-height: 1.6; }
+.footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+.fcol h4 { font-size: 11px; font-weight: 700; color: var(--black); margin-bottom: 8px; }
+.fcol p, .fcol a {
+  font-size: 10px; color: var(--gray);
+  margin-bottom: 4px; line-height: 1.5;
+  display: block; text-decoration: none;
+}
+.social-row { display: flex; gap: 7px; margin-top: 10px; }
+.soc-btn {
+  width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0;
+  transition: opacity .18s, transform .18s;
+}
+.soc-btn:hover { opacity: .85; transform: scale(1.08); }
+.soc-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+.soc-wa { background: #25d366; }
+.footer-copy {
+  border-top: 1px solid rgba(0,0,0,.09); padding-top: 10px;
+  font-size: 9px; color: #aaa; text-align: center; line-height: 1.8;
+}
+.heart { color: #e53935; }
+
+
+/* ═══════════════════════════════
+   LOGIN PAGE
+═══════════════════════════════ */
+.login-topbar {
+  display: flex; align-items: center; gap: 10px;
+  padding: 16px 18px 14px;
+  border-bottom: 1px solid var(--border);
+  background: #ffffff; flex-shrink: 0;
+}
+.login-brand { font-size: 15px; font-weight: 700; color: var(--black); }
+.login-body {
+  flex: 1; display: flex;
+  align-items: flex-start; justify-content: center;
+  padding: 30px 20px 40px;
+}
+.login-card {
+  background: #fff; border-radius: 14px;
+  padding: 28px 22px 24px; width: 100%;
+  box-shadow: var(--shadow-md);
+}
+.login-title {
+  font-size: 21px; font-weight: 800; color: var(--black);
+  margin-bottom: 5px; letter-spacing: -.02em;
+}
+.login-sub { font-size: 11px; color: #888; margin-bottom: 22px; line-height: 1.55; }
+.inp {
+  width: 100%; padding: 11px 13px;
+  border: 1.5px solid #d0d0d0; border-radius: 8px;
+  font-size: 13px; font-family: 'Poppins', sans-serif;
+  margin-bottom: 10px; outline: none; color: var(--black);
+  transition: border-color .2s; background: #fff;
+}
+.inp:focus { border-color: var(--green); }
+.inp.err { border-color: #d32f2f; }
+.err-txt { font-size: 10px; color: #d32f2f; margin-top: -6px; margin-bottom: 8px; display: none; }
+.err-txt.show { display: block; }
+.login-opts {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px;
+}
+.chk-label { display: flex; align-items: center; gap: 7px; font-size: 11px; color: #444; cursor: pointer; }
+.chk-label input { accent-color: var(--green); width: 14px; height: 14px; }
+.forgot { font-size: 11px; color: #444; font-weight: 600; text-decoration: none; }
+.btn-submit {
+  width: 100%; padding: 13px; background: var(--black); color: #fff;
+  border: 2px solid var(--black); border-radius: 9px;
+  font-size: 14px; font-weight: 700; font-family: 'Poppins', sans-serif;
+  cursor: pointer; margin-bottom: 14px; transition: background .2s, border-color .2s;
+}
+.btn-submit:hover { background: var(--green); border-color: var(--green); }
+.or-div {
+  display: flex; align-items: center; gap: 10px;
+  color: #bbb; font-size: 11px; margin-bottom: 12px;
+}
+.or-div::before, .or-div::after { content: ''; flex: 1; height: 1px; background: #eee; }
+.btn-goog {
+  width: 100%; padding: 12px; background: #fff; color: #333;
+  border: 1.5px solid #ddd; border-radius: 9px;
+  font-size: 12px; font-weight: 600; font-family: 'Poppins', sans-serif;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  gap: 10px; transition: background .15s;
+}
+.btn-goog:hover { background: #f8f8f8; }
+.btn-goog svg { width: 18px; height: 18px; }
+.signup-line { text-align: center; font-size: 11px; color: #888; margin-top: 18px; }
+.signup-line a { color: var(--black); font-weight: 700; text-decoration: none; }
+
+
+/* ═══════════════════════════════
+   HOME PAGE
+═══════════════════════════════ */
+/* Home hero */
+.home-hero { position: relative; height: 265px; overflow: hidden; }
+.home-hero > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.home-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(5,20,8,.15) 0%, rgba(5,20,8,.55) 100%);
+}
+.home-hero-text {
+  position: absolute; top: 48%; left: 50%;
+  transform: translate(-50%, -60%);
+  text-align: center; width: 92%;
+}
+.home-hero-text h2 {
+  font-size: 19px; font-weight: 800; color: #fff;
+  line-height: 1.3; text-shadow: 0 2px 10px rgba(0,0,0,.35);
+  white-space: nowrap;
+}
+.italic-gold { font-style: italic; color: #fff; }
+.home-hero-text p {
+  font-size: 10px; color: rgba(255,255,255,.85);
+  margin-top: 6px; line-height: 1.5;
+}
+
+
+/* Search bar inside hero */
+.search-box {
+  position: absolute; bottom: 16px; left: 12px; right: 12px;
+  background: #fff; padding: 8px 10px; border-radius: 12px;
+  display: flex; align-items: center; gap: 5px;
+  box-shadow: 0 3px 16px rgba(0,0,0,.2);
+}
+.search-label { font-size: 10px; color: #666; white-space: nowrap; font-weight: 500; flex-shrink: 0; }
+.search-sep { width: 1px; height: 22px; background: #e0e0e0; flex-shrink: 0; }
+.search-box select {
+  flex: 1; font-size: 10px; padding: 4px 2px;
+  border: none; outline: none; background: transparent;
+  color: #333; font-family: 'Poppins', sans-serif; cursor: pointer; font-weight: 500;
+  min-width: 0;
+}
+.btn-search {
+  background: var(--green); color: #fff; border: none;
+  border-radius: 8px; font-size: 10px; font-weight: 700;
+  padding: 8px 12px; white-space: nowrap; cursor: pointer;
+  font-family: 'Poppins', sans-serif; transition: background .18s; flex-shrink: 0;
+}
+.btn-search:hover { background: var(--green-dark); }
+
+
+/* Section title — decorative lines style (home) */
+.sec-title {
+  font-size: 15px; font-weight: 700; color: var(--black);
+  text-align: center; margin: 14px 0 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.sec-title::before, .sec-title::after {
+  content: ''; flex: 1; height: 1.5px;
+  background: linear-gradient(90deg, transparent, #c8c8c8);
+}
+.sec-title::after { background: linear-gradient(90deg, #c8c8c8, transparent); }
+
+
+/* Popular scroll */
+.pop-section { padding: 4px 14px 14px; }
+.pop-scroll {
+  display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px;
+  -ms-overflow-style: none; scrollbar-width: none;
+}
+.pop-scroll::-webkit-scrollbar { display: none; }
+.pop-card {
+  min-width: 128px; max-width: 128px;
+  background: #fff; border-radius: 12px;
+  overflow: hidden; box-shadow: var(--shadow); flex-shrink: 0;
+}
+.pop-card > img { width: 100%; height: 100px; object-fit: cover; display: block; }
+.pop-card-info { padding: 7px 8px 9px; }
+.pop-card-name { font-size: 11px; font-weight: 700; color: var(--black); line-height: 1.3; margin-bottom: 2px; }
+.pop-card-type { font-size: 9px; color: #888; }
+.pop-card-rating { display: flex; align-items: center; gap: 3px; margin-top: 3px; }
+.pop-card-rating .star { color: #f5a623; font-size: 12px; line-height: 1; }
+.pop-card-rating .rnum { font-size: 10px; color: #555; font-weight: 600; }
+
+
+/* Smart Itinerary box */
+.itin-box {
+  background: #fff; margin: 4px 14px 14px;
+  padding: 16px; border-radius: 14px; box-shadow: var(--shadow);
+}
+.itin-box .sec-title { margin: 0 0 4px; }
+.itin-box > p { font-size: 10px; color: #777; text-align: center; margin-bottom: 14px; }
+.itin-steps {
+  display: flex; align-items: center; justify-content: center;
+  gap: 5px; font-size: 9px; font-weight: 500; color: var(--black);
+  margin-bottom: 14px; flex-wrap: nowrap;
+}
+.itin-step { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+.step-num {
+  width: 17px; height: 17px; border-radius: 50%;
+  background: var(--green); color: #fff;
+  font-size: 8px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.itin-arrow { color: var(--green); font-size: 14px; font-weight: 700; }
+.itin-bottom { display: flex; align-items: center; gap: 7px; }
+.chips { display: flex; flex: 1; gap: 5px; }
+.chip {
+  flex: 1; background: var(--green-light); color: #2e7d32;
+  padding: 7px 0; border-radius: 20px; font-size: 9px;
+  text-align: center; font-weight: 600; cursor: pointer;
+  transition: background .18s, color .18s; border: none;
+  font-family: 'Poppins', sans-serif;
+}
+.chip:hover, .chip.active { background: var(--green); color: #fff; }
+.btn-buat {
+  background: var(--green); color: #fff; border: none;
+  padding: 9px 13px; border-radius: 10px; font-size: 10px;
+  font-weight: 700; white-space: nowrap; cursor: pointer;
+  font-family: 'Poppins', sans-serif; transition: background .18s; flex-shrink: 0;
+}
+.btn-buat:hover { background: var(--green-dark); }
+
+
+/* Destinasi grid */
+.dest-section { padding: 4px 14px 14px; }
+.dest-cards { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
+.dest-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); }
+.dest-card > img { width: 100%; height: 78px; object-fit: cover; display: block; }
+.dest-card-label { padding: 5px 4px; font-size: 9.5px; font-weight: 700; color: var(--black); text-align: center; }
+
+
+/* ═══════════════════════════════
+   REKOMENDASI PAGE
+═══════════════════════════════ */
+/* Green rounded header */
+.rekom-header {
+  background: var(--green);
+  padding: 18px 16px 24px;
+  border-radius: 0 0 30px 30px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: relative;
+}
+.rekom-back {
+  font-size: 32px; color: #fff; cursor: pointer;
+  line-height: 1; padding: 0 4px; font-weight: 300;
+  flex-shrink: 0;
+}
+.rekom-page-title {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  font-size: 18px; font-weight: 700; color: #fff; white-space: nowrap;
+}
+/* Bookmark icon */
+.rekom-bm {
+  width: 22px; height: 28px; position: relative; flex-shrink: 0;
+}
+.rekom-bm::before {
+  content: '';
+  position: absolute; inset: 0;
+  border: 2.5px solid rgba(255,255,255,.75);
+  border-radius: 4px;
+}
+.rekom-bm::after {
+  content: '';
+  position: absolute; bottom: -3px; left: 50%;
+  transform: translateX(-50%) rotate(-45deg);
+  width: 14px; height: 14px;
+  background: var(--green);
+  border-left: 2.5px solid rgba(255,255,255,.75);
+  border-bottom: 2.5px solid rgba(255,255,255,.75);
+}
+
+
+.rekom-body {
+  background: var(--gray-bg);
+  padding: 12px 12px 0;
+  min-height: calc(100vh - 76px);
+}
+
+
+/* Each rekom card */
+.rekom-card { display: flex; gap: 10px; margin-bottom: 12px; }
+.rekom-img-col {
+  width: 118px; flex-shrink: 0;
+  background: #fff; border-radius: 10px;
+  overflow: hidden; box-shadow: var(--shadow);
+  display: flex; flex-direction: column;
+}
+.rekom-img-col > img { width: 100%; height: 88px; object-fit: cover; display: block; }
+.rimg-label {
+  font-size: 9px; font-weight: 600; color: #333;
+  padding: 5px 6px; text-align: center; line-height: 1.35;
+  flex: 1; display: flex; align-items: center; justify-content: center;
+}
+.rekom-info-col {
+  flex: 1; background: #fff; border-radius: 10px;
+  padding: 9px 10px 10px; box-shadow: var(--shadow);
+  position: relative; min-width: 0;
+}
+/* Rating badge */
+.rekom-rating-badge {
+  position: absolute; top: 8px; right: 8px;
+  display: flex; align-items: center; gap: 3px;
+  background: #fff8e1; padding: 2px 8px; border-radius: 12px;
+}
+.rstar { color: #f5a623; font-size: 11px; }
+.rval { font-size: 10px; font-weight: 700; color: #555; }
+.rekom-info-col h3 {
+  font-size: 12px; font-weight: 700; color: var(--black);
+  margin: 0 46px 5px 0; line-height: 1.3;
+}
+.rekom-info-col p {
+  font-size: 9px; color: #555;
+  margin: 3px 0; line-height: 1.45;
+}
+.btn-tambah {
+  display: block; width: 100%; margin-top: 8px; padding: 7px;
+  background: var(--green); color: #fff; border: none;
+  border-radius: 6px; font-size: 9.5px; font-weight: 700;
+  font-family: 'Poppins', sans-serif; cursor: pointer; text-align: center;
+  transition: background .18s;
+}
+.btn-tambah:hover { background: var(--green-dark); }
+
+
+/* ═══════════════════════════════
+   LOADING OVERLAY
+═══════════════════════════════ */
+.loading-overlay {
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(10,10,10,.82);
+  display: none; align-items: center; justify-content: center;
+}
+.loading-overlay.show { display: flex; }
+.loading-box {
+  background: var(--green); border-radius: 20px;
+  width: 155px; height: 155px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 14px;
+}
+.dots-grid { display: grid; grid-template-columns: repeat(3,9px); gap: 5px; }
+.dots-grid span {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: rgba(255,255,255,.25);
+  animation: dp 1.3s ease-in-out infinite;
+}
+.dots-grid span:nth-child(1){animation-delay:0s}
+.dots-grid span:nth-child(2){animation-delay:.13s}
+.dots-grid span:nth-child(3){animation-delay:.26s}
+.dots-grid span:nth-child(4){animation-delay:.39s}
+.dots-grid span:nth-child(5){animation-delay:.52s}
+.dots-grid span:nth-child(6){animation-delay:.65s}
+.dots-grid span:nth-child(7){animation-delay:.78s}
+.dots-grid span:nth-child(8){animation-delay:.91s}
+.dots-grid span:nth-child(9){animation-delay:1.04s}
+@keyframes dp {
+  0%,80%,100%{ background: rgba(255,255,255,.25) }
+  40%         { background: rgba(255,255,255,1)   }
+}
+.loading-txt { color: #fff; text-align: center; font-size: 11px; line-height: 1.5; }
+.loading-txt strong { display: block; font-size: 13px; margin-bottom: 2px; }
+
+
+/* ═══════════════════════════════
+   TOAST
+═══════════════════════════════ */
+.toast {
+  position: fixed; bottom: 24px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--green); color: #fff;
+  padding: 10px 22px; border-radius: 24px;
+  font-size: 12px; font-weight: 600;
+  z-index: 998; opacity: 0;
+  transition: opacity .3s; pointer-events: none;
+  white-space: nowrap; box-shadow: 0 4px 16px rgba(0,0,0,.25);
+}
+.toast.show { opacity: 1; }
+</style>
 </head>
 <body>
 <div class="app">
 
-  <!-- ══ LANDING PAGE ══ -->
-  <div id="page-landing">
-    <nav class="navbar">
-      <div class="navbar-left">
-        <img src="images/Logo LontaraTrip (potong).png" alt="Logo LontaraTrip"
-             style="width:32px;height:32px;object-fit:contain;"
-             onerror="this.style.display='none'"/>
-        <span class="nav-brand">LontaraTrip</span>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+
+<!-- ═══════════════════════════════════════
+     PAGE 1 — LANDING (sebelum login)
+═══════════════════════════════════════ -->
+<div id="page-landing" class="page active">
+
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <div class="logo-circle">
+        <img src="images/Logo LontaraTrip (potong).png" alt="Logo"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+        <span class="logo-fb">L</span>
       </div>
-      <div class="navbar-links">
-        <a href="#">Home</a>
-        <a href="#">Rekomendasi</a>
-        <a href="#">Destinasi</a>
+      <span class="nav-brand">LontaraTrip</span>
+    </div>
+    <ul class="nav-links">
+      <li class="active">Home</li>
+      <li>Rekomendasi</li>
+      <li>Destinasi</li>
+    </ul>
+    <button class="btn-login" onclick="showLogin()">Login</button>
+  </nav>
+
+
+  <!-- Hero -->
+  <div class="hero">
+    <img src="images/wp login.jpg" alt="Sulawesi Selatan"
+         onerror="this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80'"/>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-title">Selamat Datang di LontaraTrip</div>
+      <div class="hero-sub">Rencanakan perjalanan cerdas ke Sulawesi Selatan</div>
+      <button class="btn-hero" onclick="showLogin()">Buat Itinerary</button>
+    </div>
+  </div>
+
+
+  <!-- Smart Itinerary Sulsel -->
+  <div class="section-smart">
+    <div class="section-heading">Smart Itinerary Sulsel</div>
+    <div class="dest-grid">
+      <div class="dest-item">
+        <img src="images/tanjung bira.jpg" alt="Tanjung Bira"
+             onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=200&fit=crop'"/>
+        <div class="dest-name">Tanjung Bira</div>
+        <div class="dest-type">Pantai</div>
       </div>
-      <button class="btn-nav-login" onclick="showLogin()">Login</button>
-    </nav>
-
-    <div class="hero">
-      <img src="images/wp login.jpg" alt="Sulawesi Selatan"
-           onerror="this.src='https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=800&q=80'"/>
-      <div class="hero-overlay"></div>
-      <div class="hero-text">
-        <div class="hero-title">Selamat Datang di LontaraTrip</div>
-        <div class="hero-sub">Rencanakan perjalanan cerdas ke Sulawesi Selatan</div>
-
-        <!-- ✅ Tombol Buat Itinerary — TANPA onclick, tidak berfungsi -->
-        <button class="btn-hero">Buat Itinerary</button>
-
+      <div class="dest-item">
+        <img src="images/benteng rotterdam.jpg" alt="Benteng Rotterdam"
+             onerror="this.src='https://images.unsplash.com/photo-1520531158340-44015069e78e?w=200&fit=crop'"/>
+        <div class="dest-name">Benteng Rotterdam</div>
+        <div class="dest-type">Museum</div>
+      </div>
+      <div class="dest-item">
+        <img src="images/pallubasa.jpeg" alt="Pallubasa"
+             onerror="this.src='https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=200&fit=crop'"/>
+        <div class="dest-name">Pallubasa Serigala</div>
+        <div class="dest-type">Kuliner</div>
+      </div>
+      <div class="dest-item">
+        <img src="images/malino.jpg" alt="Malino"
+             onerror="this.src='https://images.unsplash.com/photo-1448375240586-882707db888b?w=200&fit=crop'"/>
+        <div class="dest-name">Hutan Pinus Malino</div>
+        <div class="dest-type">Pegunungan</div>
       </div>
     </div>
-
-    <div class="section-smart">
-      <div class="section-title">Smart Itinerary Sulsel</div>
-      <div class="dest-row">
-        <div class="dest-item">
-          <img src="images/tanjung bira.jpg" alt="Tanjung Bira"
-               onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=200&fit=crop'"/>
-          <div class="dest-name">Tanjung Bira</div><div class="dest-type">Pantai</div>
-        </div>
-        <div class="dest-item">
-          <img src="images/benteng rotterdam.jpg" alt="Benteng Rotterdam"
-               onerror="this.src='https://images.unsplash.com/photo-1520531158340-44015069e78e?w=200&fit=crop'"/>
-          <div class="dest-name">Benteng Rotterdam</div><div class="dest-type">Museum</div>
-        </div>
-        <div class="dest-item">
-          <img src="images/pallubasa.jpeg" alt="Pallubasa Serigala"
-               onerror="this.src='https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=200&fit=crop'"/>
-          <div class="dest-name">Pallubasa Serigala</div><div class="dest-type">Kuliner</div>
-        </div>
-        <div class="dest-item">
-          <img src="images/malino.jpg" alt="Hutan Pinus Malino"
-               onerror="this.src='https://images.unsplash.com/photo-1448375240586-882707db888b?w=200&fit=crop'"/>
-          <div class="dest-name">Hutan Pinus Malino</div><div class="dest-type">Pegunungan</div>
-        </div>
+    <div class="cat-grid">
+      <div class="cat-item">
+        <img src="images/Pegunungan.png" alt="Pegunungan"
+             onerror="this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&fit=crop'"/>
+        <div class="cat-label">Pegunungan</div>
       </div>
-      <div class="cat-row">
-        <div class="cat-item">
-          <img src="images/Pegunungan.png" alt="Pegunungan"
-               onerror="this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&fit=crop'"/>
-          <div class="cat-label">Pegunungan</div>
-        </div>
-        <div class="cat-item">
-          <img src="images/Pantai.png" alt="Pantai"
-               onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=200&fit=crop'"/>
-          <div class="cat-label">Pantai</div>
-        </div>
-        <div class="cat-item">
-          <img src="images/Kuliner.png" alt="Kuliner"
-               onerror="this.src='https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200&fit=crop'"/>
-          <div class="cat-label">Kuliner</div>
-        </div>
-        <div class="cat-item">
-          <img src="images/Museum.png" alt="Museum"
-               onerror="this.src='https://images.unsplash.com/photo-1533105079780-92b9be482077?w=200&fit=crop'"/>
-          <div class="cat-label">Museum</div>
-        </div>
+      <div class="cat-item">
+        <img src="images/Pantai.png" alt="Pantai"
+             onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=200&fit=crop'"/>
+        <div class="cat-label">Pantai</div>
+      </div>
+      <div class="cat-item">
+        <img src="images/Kuliner.png" alt="Kuliner"
+             onerror="this.src='https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200&fit=crop'"/>
+        <div class="cat-label">Kuliner</div>
+      </div>
+      <div class="cat-item">
+        <img src="images/Museum.png" alt="Museum"
+             onerror="this.src='https://images.unsplash.com/photo-1533105079780-92b9be482077?w=200&fit=crop'"/>
+        <div class="cat-label">Museum</div>
       </div>
     </div>
+  </div>
 
-    <footer>
-      <div class="footer-desc" style="display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;">
-        <img src="images/Logo LontaraTrip (potong).png"
-             style="width:30px;height:30px;object-fit:cover;border-radius:50%;flex-shrink:0;"
-             onerror="this.style.display='none'"/>
-        <p style="margin:0;font-size:.7rem;color:#555;line-height:1.55;">
-          Smart Itinerary untuk merencanakan perjalanan terbaik di Sulawesi Selatan secara mudah dan personal.
-        </p>
-      </div>
 
-      <div class="footer-grid">
-        <div>
-          <div class="fcol-title">Kontak</div>
-          <div class="fcol-item">Makassar, Sulawesi Selatan, Indonesia</div>
-          <div class="fcol-item"><a href="mailto:lontaratrip@gmail.com">lontaratrip@gmail.com</a></div>
-          <div class="fcol-item">0825-1436-2226</div>
-          <div class="social-row">
-            <!-- Instagram -->
-            <div class="soc-btn soc-ig" title="Instagram">
-              <svg viewBox="0 0 24 24" fill="white" width="13" height="13">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
-            </div>
-            <!-- WhatsApp -->
-            <div class="soc-btn soc-wa" title="WhatsApp">
-              <svg viewBox="0 0 24 24" fill="white" width="13" height="13">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-              </svg>
-            </div>
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-top">
+      <img class="footer-logo-img" src="images/Logo LontaraTrip (potong).png"
+           onerror="this.style.display='none'" alt="Logo"/>
+      <p class="footer-desc">Smart Itinerary untuk merencanakan perjalanan terbaik di Sulawesi Selatan secara mudah dan personal.</p>
+    </div>
+    <div class="footer-grid">
+      <div class="fcol">
+        <h4>Kontak</h4>
+        <p>Makassar, Sulawesi Selatan, Indonesia</p>
+        <a href="mailto:lontaratrip@gmail.com">lontaratrip@gmail.com</a>
+        <p>0825-1436-2226</p>
+        <div class="social-row">
+          <div class="soc-btn soc-ig">
+            <svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </div>
+          <div class="soc-btn soc-wa">
+            <svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           </div>
         </div>
-        <div>
-          <div class="fcol-title">Kebijakan S&amp;K</div>
-          <div class="fcol-item">• Kebijakan Privasi &amp; Keamanan</div>
-          <div class="fcol-item">• Kebijakan Penggunaan Website</div>
+      </div>
+      <div class="fcol">
+        <h4>Kebijakan S&amp;K</h4>
+        <p>• Kebijakan Privasi &amp; Keamanan</p>
+        <p>• Kebijakan Penggunaan Website</p>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 LontaraTrip. All Rights Reserved. | Made with <span class="heart">♥</span> in Indonesia</div>
+  </div>
+
+
+</div><!-- /page-landing -->
+
+
+
+
+<!-- ═══════════════════════════════════════
+     PAGE 2 — LOGIN
+═══════════════════════════════════════ -->
+<div id="page-login" class="page">
+  <div class="login-topbar">
+    <div class="logo-circle">
+      <img src="images/Logo LontaraTrip (potong).png" alt="Logo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+      <span class="logo-fb">L</span>
+    </div>
+    <span class="login-brand">LontaraTrip</span>
+  </div>
+  <div class="login-body">
+    <div class="login-card">
+      <div class="login-title">Login ke LontaraTrip</div>
+      <div class="login-sub">Rencanakan perjalanan anda ke Sulawesi Selatan</div>
+
+
+      <input class="inp" id="f-email" type="email" placeholder="Email"
+             oninput="clrErr('f-email','e-email')"/>
+      <div class="err-txt" id="e-email">Masukkan email yang valid.</div>
+
+
+      <input class="inp" id="f-pass" type="password" placeholder="Password"
+             oninput="clrErr('f-pass','e-pass')"/>
+      <div class="err-txt" id="e-pass">Password tidak boleh kosong.</div>
+
+
+      <div class="login-opts">
+        <label class="chk-label"><input type="checkbox"/> Ingat Saya</label>
+        <a href="#" class="forgot">Lupa Password?</a>
+      </div>
+
+
+      <button class="btn-submit" onclick="doLogin()">Login</button>
+      <div class="or-div">atau</div>
+      <button class="btn-goog" onclick="doGoogle()">
+        <svg viewBox="0 0 24 24">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        Login dengan Google
+      </button>
+      <div class="signup-line">Belum punya akun? <a href="#">Daftar</a></div>
+    </div>
+  </div>
+</div><!-- /page-login -->
+
+
+
+
+<!-- ═══════════════════════════════════════
+     PAGE 3 — HOME (sesudah login)
+═══════════════════════════════════════ -->
+<div id="page-home" class="page">
+
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <div class="logo-circle">
+        <img src="images/Logo LontaraTrip (potong).png" alt="Logo"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'"/>
+        <span class="logo-fb">L</span>
+      </div>
+      <span class="nav-brand">LontaraTrip</span>
+    </div>
+    <ul class="nav-links" id="home-nav">
+      <li class="active" onclick="homeNav(this,'home')">Home</li>
+      <li onclick="homeNav(this,'rekom')">Rekomendasi</li>
+      <li onclick="homeNav(this,'dest')">Destinasi</li>
+    </ul>
+    <div class="profile-wrap">
+      <div class="nav-profile" id="profileBtn"
+           onclick="document.getElementById('profileInput').click()">
+        <svg id="profileIcon" width="18" height="18" viewBox="0 0 24 24"
+             fill="none" stroke="#3B6E50" stroke-width="2" stroke-linecap="round">
+          <circle cx="12" cy="8" r="4"/>
+          <path d="M4 20c0-4 3.58-7 8-7s8 3 8 7"/>
+        </svg>
+        <img id="profilePhoto" src="" alt="Profil"/>
+      </div>
+      <div class="profile-badge">
+        <svg viewBox="0 0 24 24">
+          <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+      </div>
+      <input type="file" id="profileInput" accept="image/*"/>
+    </div>
+  </nav>
+
+
+  <!-- Hero -->
+  <div class="home-hero">
+    <img src="images/halaman utama.jpg" alt="Hero"
+         onerror="this.src='https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=900&q=80'"/>
+    <div class="home-hero-overlay"></div>
+    <div class="home-hero-text">
+      <h2>Jelajahi Sulawesi Selatan <em class="italic-gold">Seperti Lokal!</em></h2>
+      <p>Temukan destinasi terbaik &amp; rencana perjalanan untuk liburanmu</p>
+    </div>
+    <div class="search-box">
+      <span class="search-label">Cari Trip Impianmu:</span>
+      <div class="search-sep"></div>
+      <select id="selectHari">
+        <option value="">Hari</option>
+        <option>3 Hari</option>
+        <option>5 Hari</option>
+        <option>7 Hari</option>
+      </select>
+      <div class="search-sep"></div>
+      <select id="selectTrip">
+        <option value="">Petualangan</option>
+        <option value="adventure">Adventure</option>
+        <option value="healing">Healing</option>
+      </select>
+      <button class="btn-search" onclick="scrollToItin()">Cari Itinerary</button>
+    </div>
+  </div>
+
+
+  <!-- Tempat Populer -->
+  <div class="pop-section">
+    <div class="sec-title">Tempat Populer di Sulsel</div>
+    <div class="pop-scroll" id="popScroll"></div>
+  </div>
+
+
+  <!-- Smart Itinerary -->
+  <div class="itin-box" id="smartItin">
+    <div class="sec-title" style="margin:0 0 4px">Smart Itinerary Sulsel</div>
+    <p>Rencanakan perjalananmu dengan mudah</p>
+    <div class="itin-steps">
+      <div class="itin-step"><span class="step-num">1</span><span>Pilih Durasi Trip</span></div>
+      <span class="itin-arrow">›</span>
+      <div class="itin-step"><span class="step-num">2</span><span>Pilih Tips Liburan</span></div>
+      <span class="itin-arrow">›</span>
+      <div class="itin-step"><span class="step-num">3</span><span>Buat Itinerary</span></div>
+    </div>
+    <div class="itin-bottom">
+      <div class="chips">
+        <button class="chip" onclick="pickChip(this)">Hari</button>
+        <button class="chip" onclick="pickChip(this)">Adventure</button>
+        <button class="chip" onclick="pickChip(this)">Healing</button>
+        <button class="chip" onclick="pickChip(this)">Kuliner</button>
+      </div>
+      <button class="btn-buat">Buat Itinerary</button>
+    </div>
+  </div>
+
+
+  <!-- Destinasi -->
+  <div class="dest-section" id="destSection">
+    <div class="sec-title">Destinasi</div>
+    <div class="dest-cards">
+      <div class="dest-card">
+        <img src="images/Pegunungan.png" alt="Pegunungan"
+             onerror="this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&fit=crop'"/>
+        <div class="dest-card-label">Pegunungan</div>
+      </div>
+      <div class="dest-card">
+        <img src="images/Pantai.png" alt="Pantai"
+             onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=200&fit=crop'"/>
+        <div class="dest-card-label">Pantai</div>
+      </div>
+      <div class="dest-card">
+        <img src="images/Kuliner.png" alt="Kuliner"
+             onerror="this.src='https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200&fit=crop'"/>
+        <div class="dest-card-label">Kuliner</div>
+      </div>
+      <div class="dest-card">
+        <img src="images/Museum.png" alt="Museum"
+             onerror="this.src='https://images.unsplash.com/photo-1533105079780-92b9be482077?w=200&fit=crop'"/>
+        <div class="dest-card-label">Museum</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer Home -->
+  <div class="footer">
+    <div class="footer-top">
+      <img class="footer-logo-img" src="images/Logo LontaraTrip (potong).png"
+           onerror="this.style.display='none'" alt="Logo"/>
+      <p class="footer-desc">Smart Itinerary untuk merencanakan perjalanan terbaik di Sulawesi Selatan secara mudah dan personal.</p>
+    </div>
+    <div class="footer-grid">
+      <div class="fcol">
+        <h4>Kontak</h4>
+        <p>Makassar, Sulawesi Selatan, Indonesia</p>
+        <a href="mailto:lontaratrip@gmail.com">lontaratrip@gmail.com</a>
+        <p>0825-1436-2226</p>
+        <div class="social-row">
+          <div class="soc-btn soc-ig">
+            <svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </div>
+          <div class="soc-btn soc-wa">
+            <svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
         </div>
       </div>
-
-      <div class="footer-copy">
-        © 2026 LontaraTrip. All Rights Reserved. &nbsp;|&nbsp; Made with <span class="heart">♥</span> in Indonesia
-      </div>
-    </footer>
-  </div>
-  <!-- ══ END LANDING ══ -->
-
-
-  <!-- ══ LOGIN PAGE ══ -->
-  <div id="page-login">
-    <div class="login-topbar">
-      <img src="images/Logo LontaraTrip (potong).png" alt="Logo LontaraTrip"
-           style="width:36px;height:36px;object-fit:contain;"
-           onerror="this.style.display='none'"/>
-      <span class="login-brand-name">LontaraTrip</span>
-    </div>
-    <div class="login-body">
-      <div class="login-card">
-        <div class="login-title">Login ke LontaraTrip</div>
-        <div class="login-sub">Rencanakan perjalanan anda ke Sulawesi Selatan</div>
-        <input class="inp" id="f-email" type="email" placeholder="Email" oninput="clrErr('f-email','e-email')"/>
-        <div class="err-txt" id="e-email">Masukkan email yang valid.</div>
-        <input class="inp" id="f-pass" type="password" placeholder="Password" oninput="clrErr('f-pass','e-pass')"/>
-        <div class="err-txt" id="e-pass">Password tidak boleh kosong.</div>
-        <div class="login-options">
-          <label class="chk-label"><input type="checkbox"/> Ingat Saya</label>
-          <a href="#" class="forgot">Lupa Password?</a>
-        </div>
-        <button class="btn-submit" onclick="doLogin()">Login</button>
-        <div class="or-divider">atau</div>
-        <button class="btn-goog" onclick="doGoogle()">
-          <svg viewBox="0 0 24 24">
-            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
-            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-          </svg>
-          Login dengan Google
-        </button>
-        <div class="signup-line">Belum punya akun? <a href="#">Daftar</a></div>
+      <div class="fcol">
+        <h4>Kebijakan S&amp;K</h4>
+        <p>• Kebijakan Privasi &amp; Keamanan</p>
+        <p>• Kebijakan Penggunaan Website</p>
       </div>
     </div>
+    <div class="footer-copy">© 2026 LontaraTrip. All Rights Reserved. | Made with <span class="heart">♥</span> in Indonesia</div>
   </div>
-  <!-- ══ END LOGIN ══ -->
 
 
-  <!-- Loading overlay -->
-  <div class="loading-overlay" id="loading-overlay">
-    <div class="loading-box">
-      <div class="dots-grid">
-        <span></span><span></span><span></span>
-        <span></span><span></span><span></span>
-        <span></span><span></span><span></span>
-      </div>
-      <div class="loading-txt"><strong>Sedang Di Proses</strong>Sebentar lagi...</div>
+</div><!-- /page-home -->
+
+
+
+
+<!-- ═══════════════════════════════════════
+     PAGE 4 — REKOMENDASI
+═══════════════════════════════════════ -->
+<div id="page-rekom" class="page">
+
+
+  <!-- Green rounded header (sesuai screenshot) -->
+  <div class="rekom-header">
+    <div class="rekom-back" onclick="showHome()">›</div>
+    <div class="rekom-page-title">Rekomendasi</div>
+    <div class="rekom-bm"></div>
+  </div>
+
+
+  <!-- Cards injected by JS -->
+  <div class="rekom-body" id="rekomBody"></div>
+
+
+</div><!-- /page-rekom -->
+
+
+
+
+<!-- Loading overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-box">
+    <div class="dots-grid">
+      <span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
+    <div class="loading-txt">
+      <strong>Sedang Di Proses</strong>Sebentar lagi...
     </div>
   </div>
+</div>
+
 
 </div><!-- /app -->
 
 
 <script>
-  const landingEl = document.getElementById('page-landing');
-  const loginEl   = document.getElementById('page-login');
-  const loadEl    = document.getElementById('loading-overlay');
+/* ══════════════════════════════
+   DATA
+══════════════════════════════ */
+const destinations = [
+  { nama:"Tanjung Bira",       img:"images/tanjung bira.jpg",           fb:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&fit=crop",       type:"Pantai",     rating:"4.6" },
+  { nama:"Benteng Rotterdam",  img:"images/benteng rotterdam.jpg",       fb:"https://images.unsplash.com/photo-1520531158340-44015069e78e?w=300&fit=crop",       type:"Museum",     rating:"4.5" },
+  { nama:"Pallubasa Serigala", img:"images/pallubasa.jpeg",              fb:"https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=300&fit=crop",       type:"Kuliner",    rating:"4.7" },
+  { nama:"Hutan Pinus Malino", img:"images/malino.jpg",                  fb:"https://images.unsplash.com/photo-1448375240586-882707db888b?w=300&fit=crop",       type:"Pegunungan", rating:"4.7" },
+  { nama:"Pantai Losari",      img:"images/losari.jpg",                  fb:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&fit=crop",       type:"Pantai",     rating:"4.6" },
+  { nama:"Air Terjun Takapala",img:"images/air terjun takapala.jpg",     fb:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&fit=crop",       type:"Pegunungan", rating:"4.5" },
+  { nama:"Konro Karebosi",     img:"images/konro.jpg",                   fb:"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&fit=crop",       type:"Kuliner",    rating:"4.3" },
+  { nama:"Ati Raja",           img:"images/ati raja.jpg",                fb:"https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300&fit=crop",       type:"Kuliner",    rating:"4.4" },
+  { nama:"Museum Buntu Kalando",img:"images/Museum Buntu Kalando.jpg",   fb:"https://images.unsplash.com/photo-1533105079780-92b9be482077?w=300&fit=crop",       type:"Museum",     rating:"4.2" },
+  { nama:"Monumen Mandala",    img:"images/monumen mandala.png",         fb:"https://images.unsplash.com/photo-1520531158340-44015069e78e?w=300&fit=crop",       type:"Museum",     rating:"4.5" }
+];
 
-  function showLogin() {
-    landingEl.style.display = 'none';
-    loginEl.style.display = 'flex';
-    window.scrollTo(0,0);
-  }
-  function showLanding() {
-    loginEl.style.display = 'none';
-    landingEl.style.display = 'block';
-    window.scrollTo(0,0);
-  }
-  function clrErr(inp, err) {
-    document.getElementById(inp).classList.remove('err');
-    document.getElementById(err).classList.remove('show');
-  }
-  function setErr(inp, err, msg) {
-    document.getElementById(inp).classList.add('err');
-    const e = document.getElementById(err);
-    e.textContent = msg; e.classList.add('show');
-  }
-  function loading(ms, cb) {
-    loadEl.classList.add('show');
-    setTimeout(() => { loadEl.classList.remove('show'); cb && cb(); }, ms);
-  }
-  function doLogin() {
-    const email = document.getElementById('f-email').value.trim();
-    const pass  = document.getElementById('f-pass').value;
-    let ok = true;
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setErr('f-email','e-email','Masukkan email yang valid.'); ok = false;
-    }
-    if (!pass) { setErr('f-pass','e-pass','Password tidak boleh kosong.'); ok = false; }
-    if (!ok) return;
-    loading(2200, () => { alert('Login berhasil! Selamat datang 🎉'); showLanding(); });
-  }
-  function doGoogle() {
-    loading(1800, () => { alert('Login dengan Google berhasil! 🎉'); showLanding(); });
-  }
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Enter' && loginEl.style.display !== 'none') doLogin();
+
+const rekomDetail = [
+  { nama:"Tanjung Bira",       img:"images/tanjung bira.jpg",           fb:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&fit=crop",       desc:"Tanjung Bira adalah Pantai yang terkenal dengan pasir putihnya ini sangat nyaman dan mudah dijangkau.", lokasi:"Bira, Kec. Bonto Bahari, Kabupaten Bulukumba, Sulawesi Selatan", harga:"Mulai dari Rp20.000", aktivitas:"Snorkeling, Berenang, Fotografi", rating:"4.6" },
+  { nama:"Benteng Rotterdam",  img:"images/benteng rotterdam.jpg",       fb:"https://images.unsplash.com/photo-1520531158340-44015069e78e?w=300&fit=crop",       desc:"Benteng Rotterdam atau Benteng Ujung Pandang adalah benteng peninggalan Kerajaan Gowa-Tallo.", lokasi:"Jl. Ujung Pandang, Bulo Gading, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp5.000", aktivitas:"Walking Tour, Budaya, Edukasi", rating:"4.5" },
+  { nama:"Pallubasa Serigala", img:"images/pallubasa.png",               fb:"https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=300&fit=crop",       desc:"Pallubasa salah satu makanan khas Makassar, berupa olahan daging dengan kuah yang khas.", lokasi:"Jl. Serigala No.56, Mamajang Dalam, Kec. Mamajang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp39.000", aktivitas:"Menikmati Pallubasa Khas Makassar", rating:"4.7" },
+  { nama:"Hutan Pinus Malino", img:"images/malino.jpg",                  fb:"https://images.unsplash.com/photo-1448375240586-882707db888b?w=300&fit=crop",       desc:"Pemandangan hamparan pohon pinus yang luas dan hijau dengan udara sejuk, keunggulan kawasan wisata.", lokasi:"Jl. Sultan Hasanuddin, Malino, Kec. Tinggimoncong, Kabupaten Gowa, Sulawesi Selatan", harga:"Mulai dari Rp10.000", aktivitas:"Fotografi Alam, Piknik, Naik Kuda", rating:"4.7" },
+  { nama:"Pantai Losari",      img:"images/losari.jpg",                  fb:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&fit=crop",       desc:"Pantai ini terkenal dengan panorama lautnya yang indah dan menawan, terutama saat matahari terbenam.", lokasi:"Jl. Somba OPU No.57, Maloku, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Gratis", aktivitas:"Menikmati Sunset, Fotografi, Kuliner", rating:"4.6" },
+  { nama:"Air Terjun Takapala",img:"images/air terjun takapala.jpg",     fb:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&fit=crop",       desc:"Salah satu destinasi wisata paling ikonik di kawasan dataran tinggi Malino, Kab. Gowa, Sulawesi Selatan.", lokasi:"Bonto Lerung, Kec. Tinggimoncong, Kab. Gowa, Sulawesi Selatan", harga:"Mulai dari Rp3.000", aktivitas:"Berenang, Piknik, Menikmati Air Terjun", rating:"4.5" },
+  { nama:"Konro Karebosi",     img:"images/konro.jpg",                   fb:"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&fit=crop",       desc:"Hidangan iga sapi bakar dengan tekstur empuk dan cita rasa khas berkat perpaduan rempah Nusantara.", lokasi:"Jl. Gn. Lompobattang No.41-43, Pisang Utara, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp60.000", aktivitas:"Menikmati Konro Khas Makassar", rating:"4.3" },
+  { nama:"Ati Raja",           img:"images/ati raja.jpg",                fb:"https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300&fit=crop",       desc:"Bakso yang dikenal dengan kelezatan dan kualitasnya yang tinggi dibuat dari daging sapi pilihan.", lokasi:"Jl. Gn. Merapi No.170, Lajangiru, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp37.000", aktivitas:"Menikmati Bakso Ati Raja", rating:"4.4" },
+  { nama:"Museum Buntu Kalando",img:"images/Museum Buntu Kalando.jpg",   fb:"https://images.unsplash.com/photo-1533105079780-92b9be482077?w=300&fit=crop",       desc:"Museum ini menjadi tempat pelestarian benda-benda peninggalan budaya Tana Toraja.", lokasi:"RW.lobe, Tongko Sarapung, Kec. Sangalla, Kabupaten Tana Toraja, Sulawesi Selatan", harga:"Gratis", aktivitas:"Fotografi, Eksplorasi Budaya Toraja", rating:"4.2" },
+  { nama:"Monumen Mandala",    img:"images/monumen mandala.png",         fb:"https://images.unsplash.com/photo-1520531158340-44015069e78e?w=300&fit=crop",       desc:"Monumen ini menyimpan koleksi penting, seperti relief, 24 diorama, pakaian perjuangan, dan senjata.", lokasi:"Jl. Jend. Sudirman, Sawerigading, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp5.000", aktivitas:"Edukasi Sejarah, Eksplorasi Monumen", rating:"4.5" }
+];
+
+
+/* ══════════════════════════════
+   HELPER SVG ICONS
+══════════════════════════════ */
+const igSvg = `<svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>`;
+const waSvg = `<svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
+
+
+const footerHTML = `
+  <div class="footer">
+    <div class="footer-top">
+      <img class="footer-logo-img" src="images/Logo LontaraTrip (potong).png" onerror="this.style.display='none'" alt="Logo"/>
+      <p class="footer-desc">Smart Itinerary untuk merencanakan perjalanan terbaik di Sulawesi Selatan secara mudah dan personal.</p>
+    </div>
+    <div class="footer-grid">
+      <div class="fcol">
+        <h4>Kontak</h4>
+        <p>Makassar, Sulawesi Selatan, Indonesia</p>
+        <a href="mailto:lontaratrip@gmail.com">lontaratrip@gmail.com</a>
+        <p>0825-1436-2226</p>
+        <div class="social-row">
+          <div class="soc-btn soc-ig">${igSvg}</div>
+          <div class="soc-btn soc-wa">${waSvg}</div>
+        </div>
+      </div>
+      <div class="fcol">
+        <h4>Kebijakan S&K</h4>
+        <p>• Kebijakan Privasi & Keamanan</p>
+        <p>• Kebijakan Penggunaan Website</p>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 LontaraTrip. All Rights Reserved. | Made with <span class="heart">♥</span> in Indonesia</div>
+  </div>`;
+
+
+/* ══════════════════════════════
+   BUILD POPULAR CARDS
+══════════════════════════════ */
+(function buildPop() {
+  const wrap = document.getElementById('popScroll');
+  destinations.forEach(d => {
+    wrap.innerHTML += `
+      <div class="pop-card">
+        <img src="${d.img}" alt="${d.nama}" onerror="this.src='${d.fb}'"/>
+        <div class="pop-card-info">
+          <div class="pop-card-name">${d.nama}</div>
+          <div class="pop-card-type">${d.type}</div>
+          <div class="pop-card-rating">
+            <span class="star">☆</span>
+            <span class="rnum">${d.rating}</span>
+          </div>
+        </div>
+      </div>`;
   });
+})();
+
+
+/* ══════════════════════════════
+   BUILD REKOM CARDS
+══════════════════════════════ */
+function buildRekom() {
+  const body = document.getElementById('rekomBody');
+  if (body.childElementCount > 0) return;
+  let html = '';
+  rekomDetail.forEach(d => {
+    html += `
+      <div class="rekom-card">
+        <div class="rekom-img-col">
+          <img src="${d.img}" alt="${d.nama}" onerror="this.src='${d.fb}'"/>
+          <div class="rimg-label">${d.nama}</div>
+        </div>
+        <div class="rekom-info-col">
+          <div class="rekom-rating-badge">
+            <span class="rstar">★</span>
+            <span class="rval">${d.rating}</span>
+          </div>
+          <h3>${d.nama}</h3>
+          <p>${d.desc}</p>
+          <p>📍 ${d.lokasi}</p>
+          <p>💰 Harga: ${d.harga}</p>
+          <p>🎯 Aktivitas: ${d.aktivitas}</p>
+          <button class="btn-tambah" onclick="tambah('${d.nama}')">Tambahkan ke Itinerary</button>
+        </div>
+      </div>`;
+  });
+  html += footerHTML;
+  body.innerHTML = html;
+}
+
+
+/* ══════════════════════════════
+   PAGE NAVIGATION
+══════════════════════════════ */
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+
+function showLogin()  { showPage('page-login'); }
+
+
+function showHome() {
+  showPage('page-home');
+  document.querySelectorAll('#home-nav li').forEach(li => li.classList.remove('active'));
+  document.querySelector('#home-nav li:first-child').classList.add('active');
+}
+
+
+function showRekom() {
+  buildRekom();
+  showPage('page-rekom');
+}
+
+
+function homeNav(el, target) {
+  document.querySelectorAll('#home-nav li').forEach(li => li.classList.remove('active'));
+  el.classList.add('active');
+  if (target === 'rekom') { showRekom(); }
+  else if (target === 'dest') {
+    document.getElementById('destSection').scrollIntoView({ behavior:'smooth' });
+  }
+}
+
+
+/* ══════════════════════════════
+   LOADING
+══════════════════════════════ */
+function loading(ms, cb) {
+  const el = document.getElementById('loadingOverlay');
+  el.classList.add('show');
+  setTimeout(() => { el.classList.remove('show'); if (cb) cb(); }, ms);
+}
+
+
+/* ══════════════════════════════
+   LOGIN
+══════════════════════════════ */
+function clrErr(inp, err) {
+  document.getElementById(inp).classList.remove('err');
+  document.getElementById(err).classList.remove('show');
+}
+function setErr(inp, err, msg) {
+  document.getElementById(inp).classList.add('err');
+  const e = document.getElementById(err);
+  e.textContent = msg; e.classList.add('show');
+}
+function doLogin() {
+  const email = document.getElementById('f-email').value.trim();
+  const pass  = document.getElementById('f-pass').value;
+  let ok = true;
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    setErr('f-email','e-email','Masukkan email yang valid.'); ok = false;
+  }
+  if (!pass) { setErr('f-pass','e-pass','Password tidak boleh kosong.'); ok = false; }
+  if (!ok) return;
+  loading(2000, () => { showHome(); showToast('Login berhasil! Selamat datang 🎉'); });
+}
+function doGoogle() {
+  loading(1600, () => { showHome(); showToast('Login dengan Google berhasil! 🎉'); });
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && document.getElementById('page-login').classList.contains('active')) doLogin();
+});
+
+
+/* ══════════════════════════════
+   TOAST
+══════════════════════════════ */
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+
+/* ══════════════════════════════
+   HOME HELPERS
+══════════════════════════════ */
+function scrollToItin() {
+  document.getElementById('smartItin').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+function pickChip(el) {
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+}
+
+
+/* ══════════════════════════════
+   REKOM
+══════════════════════════════ */
+function tambah(nama) {
+  showToast(nama + ' ditambahkan ke Itinerary! ✅');
+}
+
+
+/* ══════════════════════════════
+   PROFILE PHOTO UPLOAD
+══════════════════════════════ */
+document.getElementById('profileInput').addEventListener('change', function() {
+  const file = this.files[0];
+  if (!file) return;
+  const url = URL.createObjectURL(file);
+  const photo = document.getElementById('profilePhoto');
+  const icon  = document.getElementById('profileIcon');
+  photo.src = url;
+  photo.style.display = 'block';
+  icon.style.display  = 'none';
+});
 </script>
 </body>
 </html>
+
+
+
