@@ -12,6 +12,7 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; }
 
+
 :root {
   --green:       #3B6E50;
   --green-dark:  #2d5a3d;
@@ -25,6 +26,7 @@ html, body { height: 100%; }
   --shadow-md:   0 2px 14px rgba(0,0,0,.13);
 }
 
+
 body {
   font-family: 'Poppins', sans-serif;
   background: #ffffff;
@@ -33,6 +35,8 @@ body {
   min-height: 100vh;
 }
 
+
+/* App wrapper */
 .app {
   width: 100%;
   max-width: 440px;
@@ -42,14 +46,15 @@ body {
   overflow-x: hidden;
 }
 
+
 /* Page system */
 .page { display: none; }
 .page.active { display: block; background: #ffffff; }
-#page-login.active  { display: flex; flex-direction: column; min-height: 100vh; background: #ffffff; }
-#page-home.active   { background: #ffffff; }
-#page-landing.active{ background: var(--cream); }
-#page-rekom.active  { background: var(--gray-bg); }
-#page-dest.active   { background: var(--gray-bg); }
+#page-login.active { display: flex; flex-direction: column; min-height: 100vh; background: #FFFBE5; }
+#page-home.active { background: #ffffff; }
+#page-landing.active { background: var(--cream); }
+#page-rekom.active { background: var(--gray-bg); }
+
 
 /* ═══════════════════════════════
    SHARED NAVBAR
@@ -60,7 +65,7 @@ body {
   justify-content: space-between;
   padding: 0 16px;
   height: 58px;
-  background: #fffbe5;
+  background: #FFFBE5;
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
@@ -68,10 +73,12 @@ body {
   box-shadow: 0 1px 10px rgba(0,0,0,.07);
 }
 
+
+/* Logo group */
 .nav-logo { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 .logo-circle {
   width: 36px; height: 36px; border-radius: 50%;
-  overflow: hidden; background: var(--green);
+  overflow: hidden;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
@@ -79,24 +86,31 @@ body {
 .logo-fb { color: #fff; font-size: 16px; font-weight: 800; font-family: serif; display: none; }
 .nav-brand { font-size: 14px; font-weight: 700; color: var(--black); white-space: nowrap; }
 
+
+/* Nav links */
 .nav-links { display: flex; gap: 14px; list-style: none; }
 .nav-links li {
-  font-size: 11px; font-weight: 600; color: var(--black);
+  font-size: 10px; font-weight: 600; color: var(--black);
   cursor: pointer; padding: 2px 0;
   white-space: nowrap; transition: color .18s;
 }
 .nav-links li:hover { color: var(--green); }
 .nav-links li.active { color: var(--green); border-bottom: 2px solid var(--green); }
 
-#page-landing .navbar { background: var(--cream); }
+
+/* Landing page navbar stays cream */
+#page-landing .navbar {
+  background: var(--cream);
+}
 #page-landing { background: var(--cream) !important; }
+
 
 .btn-login {
   background: var(--green);
   color: #fff;
   border: none;
-  border-radius: 8px;
-  padding: 8px 18px;
+  border-radius: 6px;
+  padding: 6px 14px;
   font-size: 12px;
   font-weight: 700;
   font-family: 'Poppins', sans-serif;
@@ -107,6 +121,8 @@ body {
 }
 .btn-login:hover { background: var(--green-dark); }
 
+
+/* Profile button */
 .profile-wrap { position: relative; flex-shrink: 0; }
 .nav-profile {
   width: 36px; height: 36px; border-radius: 50%;
@@ -128,10 +144,14 @@ body {
 .profile-badge svg { width: 7px; height: 7px; fill: white; }
 #profileInput { display: none; }
 
+
 /* ═══════════════════════════════
    LANDING PAGE
 ═══════════════════════════════ */
-.hero { position: relative; height: 265px; overflow: hidden; }
+/* Hero */
+.hero {
+  position: relative; height: 265px; overflow: hidden;
+}
 .hero > img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .hero-overlay {
   position: absolute; inset: 0;
@@ -164,18 +184,24 @@ body {
 }
 .btn-hero:hover { background: var(--green-dark); }
 
+
+/* Smart Itinerary section on landing */
 .section-smart { background: #fff; padding: 22px 16px 26px; }
 .section-heading {
   font-size: 15px; font-weight: 700; color: var(--black);
   text-align: center; margin-bottom: 18px;
 }
 
+
+/* Destination grid 4 col */
 .dest-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-bottom: 8px; }
 .dest-item { cursor: pointer; }
 .dest-item img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 8px; display: block; }
 .dest-name { font-size: 9px; font-weight: 600; color: var(--black); margin-top: 4px; line-height: 1.3; }
 .dest-type { font-size: 8.5px; color: #999; }
 
+
+/* Category grid */
 .cat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-top: 6px; }
 .cat-item { position: relative; border-radius: 8px; overflow: hidden; cursor: pointer; aspect-ratio: 1/1; }
 .cat-item img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(.65); }
@@ -187,6 +213,7 @@ body {
   background: linear-gradient(0deg, rgba(0,0,0,.42) 0%, transparent 100%);
 }
 
+
 /* ═══════════════════════════════
    FOOTER (shared)
 ═══════════════════════════════ */
@@ -195,7 +222,9 @@ body {
   padding: 20px 16px 14px;
   border-top: 1px solid var(--border);
 }
-.footer-top { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 16px; }
+.footer-top {
+  display: flex; gap: 12px; align-items: flex-start; margin-bottom: 16px;
+}
 .footer-logo-img { width: 34px; height: 34px; object-fit: cover; border-radius: 50%; flex-shrink: 0; }
 .footer-desc { font-size: 10px; color: var(--gray); line-height: 1.6; }
 .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
@@ -221,6 +250,7 @@ body {
 }
 .heart { color: #e53935; }
 
+
 /* ═══════════════════════════════
    LOGIN PAGE
 ═══════════════════════════════ */
@@ -228,7 +258,7 @@ body {
   display: flex; align-items: center; gap: 10px;
   padding: 16px 18px 14px;
   border-bottom: 1px solid var(--border);
-  background: #ffffff; flex-shrink: 0;
+  background: #FFFBE5; flex-shrink: 0;
 }
 .login-brand { font-size: 15px; font-weight: 700; color: var(--black); }
 .login-body {
@@ -287,9 +317,11 @@ body {
 .signup-line { text-align: center; font-size: 11px; color: #888; margin-top: 18px; }
 .signup-line a { color: var(--black); font-weight: 700; text-decoration: none; }
 
+
 /* ═══════════════════════════════
    HOME PAGE
 ═══════════════════════════════ */
+/* Home hero */
 .home-hero { position: relative; height: 265px; overflow: hidden; }
 .home-hero > img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .home-hero-overlay {
@@ -312,6 +344,8 @@ body {
   margin-top: 6px; line-height: 1.5;
 }
 
+
+/* Search bar inside hero */
 .search-box {
   position: absolute; bottom: 16px; left: 12px; right: 12px;
   background: #fff; padding: 8px 10px; border-radius: 12px;
@@ -321,7 +355,7 @@ body {
 .search-label { font-size: 10px; color: #666; white-space: nowrap; font-weight: 500; flex-shrink: 0; }
 .search-sep { width: 1px; height: 22px; background: #e0e0e0; flex-shrink: 0; }
 .search-box select {
-  flex: 1; font-size: 10px; padding: 4px 2px;
+  flex: 1; font-size: 9px; padding: 4px 2px;
   border: none; outline: none; background: transparent;
   color: #333; font-family: 'Poppins', sans-serif; cursor: pointer; font-weight: 500;
   min-width: 0;
@@ -334,6 +368,8 @@ body {
 }
 .btn-search:hover { background: var(--green-dark); }
 
+
+/* Section title — decorative lines style (home) */
 .sec-title {
   font-size: 15px; font-weight: 700; color: var(--black);
   text-align: center; margin: 14px 0 12px;
@@ -345,6 +381,8 @@ body {
 }
 .sec-title::after { background: linear-gradient(90deg, #c8c8c8, transparent); }
 
+
+/* Popular scroll */
 .pop-section { padding: 4px 14px 14px; }
 .pop-scroll {
   display: flex; gap: 10px; overflow-x: auto; padding-bottom: 4px;
@@ -360,10 +398,11 @@ body {
 .pop-card-info { padding: 7px 8px 9px; }
 .pop-card-name { font-size: 11px; font-weight: 700; color: var(--black); line-height: 1.3; margin-bottom: 2px; }
 .pop-card-type { font-size: 9px; color: #888; }
-.pop-card-rating { display: flex; align-items: center; gap: 3px; margin-top: 3px; }
-.pop-card-rating .star { color: #f5a623; font-size: 12px; line-height: 1; }
+.pop-card-rating { display: flex; justify-content: flex-end; align-items: center; gap: 4px; margin-top: 6px; }
 .pop-card-rating .rnum { font-size: 10px; color: #555; font-weight: 600; }
 
+
+/* Smart Itinerary box */
 .itin-box {
   background: #fff; margin: 4px 14px 14px;
   padding: 16px; border-radius: 14px; box-shadow: var(--shadow);
@@ -401,21 +440,19 @@ body {
 }
 .btn-buat:hover { background: var(--green-dark); }
 
-/* Destinasi grid di Home — cards clickable */
+
+/* Destinasi grid */
 .dest-section { padding: 4px 14px 14px; }
 .dest-cards { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; }
-.dest-card {
-  background: #fff; border-radius: 10px; overflow: hidden;
-  box-shadow: var(--shadow); cursor: pointer;
-  transition: transform .18s, box-shadow .18s;
-}
-.dest-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.dest-card { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); }
 .dest-card > img { width: 100%; height: 78px; object-fit: cover; display: block; }
 .dest-card-label { padding: 5px 4px; font-size: 9.5px; font-weight: 700; color: var(--black); text-align: center; }
+
 
 /* ═══════════════════════════════
    REKOMENDASI PAGE
 ═══════════════════════════════ */
+/* Green rounded header */
 .rekom-header {
   background: var(--green);
   padding: 18px 16px 24px;
@@ -432,7 +469,10 @@ body {
   position: absolute; left: 50%; transform: translateX(-50%);
   font-size: 18px; font-weight: 700; color: #fff; white-space: nowrap;
 }
-.rekom-bm { width: 22px; height: 28px; position: relative; flex-shrink: 0; }
+/* Bookmark icon */
+.rekom-bm {
+  width: 22px; height: 26px; position: relative; flex-shrink: 0;
+}
 .rekom-bm::before {
   content: '';
   position: absolute; inset: 0;
@@ -441,13 +481,14 @@ body {
 }
 .rekom-bm::after {
   content: '';
-  position: absolute; bottom: -3px; left: 50%;
+  position: absolute; bottom: 8px; left: 50%;
   transform: translateX(-50%) rotate(-45deg);
-  width: 14px; height: 14px;
+  width: 10px; height: 10px;
   background: var(--green);
   border-left: 2.5px solid rgba(255,255,255,.75);
   border-bottom: 2.5px solid rgba(255,255,255,.75);
 }
+
 
 .rekom-body {
   background: var(--gray-bg);
@@ -455,6 +496,8 @@ body {
   min-height: calc(100vh - 76px);
 }
 
+
+/* Each rekom card */
 .rekom-card { display: flex; gap: 10px; margin-bottom: 12px; }
 .rekom-img-col {
   width: 118px; flex-shrink: 0;
@@ -464,15 +507,21 @@ body {
 }
 .rekom-img-col > img { width: 100%; height: 88px; object-fit: cover; display: block; }
 .rimg-label {
-  font-size: 9px; font-weight: 600; color: #333;
-  padding: 5px 6px; text-align: center; line-height: 1.35;
-  flex: 1; display: flex; align-items: center; justify-content: center;
+  padding: 5px 8px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex: 0;
+  gap: 1px;
 }
 .rekom-info-col {
   flex: 1; background: #fff; border-radius: 10px;
   padding: 9px 10px 10px; box-shadow: var(--shadow);
   position: relative; min-width: 0;
 }
+/* Rating badge */
 .rekom-rating-badge {
   position: absolute; top: 8px; right: 8px;
   display: flex; align-items: center; gap: 3px;
@@ -484,7 +533,10 @@ body {
   font-size: 12px; font-weight: 700; color: var(--black);
   margin: 0 46px 5px 0; line-height: 1.3;
 }
-.rekom-info-col p { font-size: 9px; color: #555; margin: 3px 0; line-height: 1.45; }
+.rekom-info-col p {
+  font-size: 9px; color: #555;
+  margin: 3px 0; line-height: 1.45;
+}
 .btn-tambah {
   display: block; width: 100%; margin-top: 8px; padding: 7px;
   background: var(--green); color: #fff; border: none;
@@ -493,6 +545,7 @@ body {
   transition: background .18s;
 }
 .btn-tambah:hover { background: var(--green-dark); }
+
 
 /* ═══════════════════════════════
    DESTINASI PAGE (sub-pages)
@@ -526,6 +579,7 @@ body {
   border-bottom: 2.5px solid rgba(255,255,255,.75);
 }
 
+
 /* Tab bar */
 .dest-tabs {
   display: flex;
@@ -552,9 +606,11 @@ body {
 }
 .dest-tab:hover { color: var(--green); }
 
+
 /* Dest content panels */
 .dest-panel { display: none; padding: 10px 10px 0; background: var(--gray-bg); }
 .dest-panel.active { display: block; }
+
 
 /* Dest card style (matches original HTML files) */
 .dcard { display: flex; gap: 8px; margin-bottom: 12px; }
@@ -593,6 +649,7 @@ body {
 }
 .dcard-btn:hover { background: var(--green-dark); }
 
+
 /* Footer inside dest page */
 .dest-footer {
   background: var(--cream);
@@ -618,6 +675,7 @@ body {
   border-top: 1px solid rgba(0,0,0,.09); padding-top: 9px;
   font-size: .6rem; color: #999; text-align: center; line-height: 1.8;
 }
+
 
 /* ═══════════════════════════════
    LOADING OVERLAY
@@ -656,7 +714,10 @@ body {
 .loading-txt { color: #fff; text-align: center; font-size: 11px; line-height: 1.5; }
 .loading-txt strong { display: block; font-size: 13px; margin-bottom: 2px; }
 
-/* TOAST */
+
+/* ═══════════════════════════════
+   TOAST
+═══════════════════════════════ */
 .toast {
   position: fixed; bottom: 24px; left: 50%;
   transform: translateX(-50%);
@@ -673,13 +734,18 @@ body {
 <body>
 <div class="app">
 
+
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
+
 <!-- ═══════════════════════════════════════
-     PAGE 1 — LANDING
+     PAGE 1 — LANDING (sebelum login)
 ═══════════════════════════════════════ -->
 <div id="page-landing" class="page active">
+
+
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-logo">
       <div class="logo-circle">
@@ -691,12 +757,14 @@ body {
     </div>
     <ul class="nav-links">
       <li class="active">Home</li>
-      <li onclick="showLogin()">Rekomendasi</li>
-      <li onclick="showLogin()">Destinasi</li>
+      <li>Rekomendasi</li>
+      <li>Destinasi</li>
     </ul>
     <button class="btn-login" onclick="showLogin()">Login</button>
   </nav>
 
+
+  <!-- Hero -->
   <div class="hero">
     <img src="images/wp login.jpg" alt="Sulawesi Selatan"
          onerror="this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80'"/>
@@ -708,6 +776,8 @@ body {
     </div>
   </div>
 
+
+  <!-- Smart Itinerary Sulsel -->
   <div class="section-smart">
     <div class="section-heading">Smart Itinerary Sulsel</div>
     <div class="dest-grid">
@@ -737,22 +807,22 @@ body {
       </div>
     </div>
     <div class="cat-grid">
-      <div class="cat-item" onclick="showLogin()">
+      <div class="cat-item">
         <img src="images/Pegunungan.png" alt="Pegunungan"
              onerror="this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&fit=crop'"/>
         <div class="cat-label">Pegunungan</div>
       </div>
-      <div class="cat-item" onclick="showLogin()">
+      <div class="cat-item">
         <img src="images/Pantai.png" alt="Pantai"
              onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=200&fit=crop'"/>
         <div class="cat-label">Pantai</div>
       </div>
-      <div class="cat-item" onclick="showLogin()">
+      <div class="cat-item">
         <img src="images/Kuliner.png" alt="Kuliner"
              onerror="this.src='https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200&fit=crop'"/>
         <div class="cat-label">Kuliner</div>
       </div>
-      <div class="cat-item" onclick="showLogin()">
+      <div class="cat-item">
         <img src="images/Museum.png" alt="Museum"
              onerror="this.src='https://images.unsplash.com/photo-1533105079780-92b9be482077?w=200&fit=crop'"/>
         <div class="cat-label">Museum</div>
@@ -760,6 +830,8 @@ body {
     </div>
   </div>
 
+
+  <!-- Footer -->
   <div class="footer">
     <div class="footer-top">
       <img class="footer-logo-img" src="images/Logo LontaraTrip (potong).png"
@@ -773,8 +845,12 @@ body {
         <a href="mailto:lontaratrip@gmail.com">lontaratrip@gmail.com</a>
         <p>0825-1436-2226</p>
         <div class="social-row">
-          <div class="soc-btn soc-ig"><svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
-          <div class="soc-btn soc-wa"><svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+          <div class="soc-btn soc-ig">
+            <svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </div>
+          <div class="soc-btn soc-wa">
+            <svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
         </div>
       </div>
       <div class="fcol">
@@ -785,7 +861,11 @@ body {
     </div>
     <div class="footer-copy">© 2026 LontaraTrip. All Rights Reserved. | Made with <span class="heart">♥</span> in Indonesia</div>
   </div>
+
+
 </div><!-- /page-landing -->
+
+
 
 
 <!-- ═══════════════════════════════════════
@@ -804,16 +884,24 @@ body {
     <div class="login-card">
       <div class="login-title">Login ke LontaraTrip</div>
       <div class="login-sub">Rencanakan perjalanan anda ke Sulawesi Selatan</div>
+
+
       <input class="inp" id="f-email" type="email" placeholder="Email"
              oninput="clrErr('f-email','e-email')"/>
       <div class="err-txt" id="e-email">Masukkan email yang valid.</div>
+
+
       <input class="inp" id="f-pass" type="password" placeholder="Password"
              oninput="clrErr('f-pass','e-pass')"/>
       <div class="err-txt" id="e-pass">Password tidak boleh kosong.</div>
+
+
       <div class="login-opts">
         <label class="chk-label"><input type="checkbox"/> Ingat Saya</label>
         <a href="#" class="forgot">Lupa Password?</a>
       </div>
+
+
       <button class="btn-submit" onclick="doLogin()">Login</button>
       <div class="or-div">atau</div>
       <button class="btn-goog" onclick="doGoogle()">
@@ -831,10 +919,15 @@ body {
 </div><!-- /page-login -->
 
 
+
+
 <!-- ═══════════════════════════════════════
-     PAGE 3 — HOME
+     PAGE 3 — HOME (sesudah login)
 ═══════════════════════════════════════ -->
 <div id="page-home" class="page">
+
+
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="nav-logo">
       <div class="logo-circle">
@@ -860,12 +953,17 @@ body {
         <img id="profilePhoto" src="" alt="Profil"/>
       </div>
       <div class="profile-badge">
-        <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        <svg viewBox="0 0 24 24">
+          <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
       </div>
       <input type="file" id="profileInput" accept="image/*"/>
     </div>
   </nav>
 
+
+  <!-- Hero -->
   <div class="home-hero">
     <img src="images/halaman utama.jpg" alt="Hero"
          onerror="this.src='https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=900&q=80'"/>
@@ -893,11 +991,15 @@ body {
     </div>
   </div>
 
+
+  <!-- Tempat Populer -->
   <div class="pop-section">
     <div class="sec-title">Tempat Populer di Sulsel</div>
     <div class="pop-scroll" id="popScroll"></div>
   </div>
 
+
+  <!-- Smart Itinerary -->
   <div class="itin-box" id="smartItin">
     <div class="sec-title" style="margin:0 0 4px">Smart Itinerary Sulsel</div>
     <p>Rencanakan perjalananmu dengan mudah</p>
@@ -919,26 +1021,27 @@ body {
     </div>
   </div>
 
-  <!-- Destinasi section — cards link ke page dest -->
+
+  <!-- Destinasi -->
   <div class="dest-section" id="destSection">
     <div class="sec-title">Destinasi</div>
     <div class="dest-cards">
-      <div class="dest-card" onclick="showDest('pegunungan')">
+      <div class="dest-card">
         <img src="images/Pegunungan.png" alt="Pegunungan"
              onerror="this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200&fit=crop'"/>
         <div class="dest-card-label">Pegunungan</div>
       </div>
-      <div class="dest-card" onclick="showDest('pantai')">
+      <div class="dest-card">
         <img src="images/Pantai.png" alt="Pantai"
              onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=200&fit=crop'"/>
         <div class="dest-card-label">Pantai</div>
       </div>
-      <div class="dest-card" onclick="showDest('kuliner')">
+      <div class="dest-card">
         <img src="images/Kuliner.png" alt="Kuliner"
              onerror="this.src='https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200&fit=crop'"/>
         <div class="dest-card-label">Kuliner</div>
       </div>
-      <div class="dest-card" onclick="showDest('museum')">
+      <div class="dest-card">
         <img src="images/Museum.png" alt="Museum"
              onerror="this.src='https://images.unsplash.com/photo-1533105079780-92b9be482077?w=200&fit=crop'"/>
         <div class="dest-card-label">Museum</div>
@@ -946,6 +1049,8 @@ body {
     </div>
   </div>
 
+
+  <!-- Footer Home -->
   <div class="footer">
     <div class="footer-top">
       <img class="footer-logo-img" src="images/Logo LontaraTrip (potong).png"
@@ -959,8 +1064,12 @@ body {
         <a href="mailto:lontaratrip@gmail.com">lontaratrip@gmail.com</a>
         <p>0825-1436-2226</p>
         <div class="social-row">
-          <div class="soc-btn soc-ig"><svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
-          <div class="soc-btn soc-wa"><svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+          <div class="soc-btn soc-ig">
+            <svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </div>
+          <div class="soc-btn soc-wa">
+            <svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
         </div>
       </div>
       <div class="fcol">
@@ -971,64 +1080,34 @@ body {
     </div>
     <div class="footer-copy">© 2026 LontaraTrip. All Rights Reserved. | Made with <span class="heart">♥</span> in Indonesia</div>
   </div>
+
+
 </div><!-- /page-home -->
+
+
 
 
 <!-- ═══════════════════════════════════════
      PAGE 4 — REKOMENDASI
 ═══════════════════════════════════════ -->
 <div id="page-rekom" class="page">
+
+
+  <!-- Green rounded header (sesuai screenshot) -->
   <div class="rekom-header">
-    <div class="rekom-back" onclick="showHome()">‹</div>
+    <div class="rekom-back" onclick="showHome()">›</div>
     <div class="rekom-page-title">Rekomendasi</div>
     <div class="rekom-bm"></div>
   </div>
+
+
+  <!-- Cards injected by JS -->
   <div class="rekom-body" id="rekomBody"></div>
+
+
 </div><!-- /page-rekom -->
 
 
-<!-- ═══════════════════════════════════════
-     PAGE 5 — DESTINASI (dengan 4 tab)
-═══════════════════════════════════════ -->
-<div id="page-dest" class="page">
-  <div class="dest-page-header">
-    <div class="dest-page-back" onclick="showHome()">‹</div>
-    <div class="dest-page-title">Destinasi</div>
-    <div class="dest-page-bm"></div>
-  </div>
-
-  <!-- Tab Bar -->
-  <div class="dest-tabs">
-    <div class="dest-tab active" onclick="switchTab(this,'pegunungan')">Pegunungan</div>
-    <div class="dest-tab" onclick="switchTab(this,'pantai')">Pantai</div>
-    <div class="dest-tab" onclick="switchTab(this,'kuliner')">Kuliner</div>
-    <div class="dest-tab" onclick="switchTab(this,'museum')">Museum</div>
-  </div>
-
-  <!-- Panel: PEGUNUNGAN -->
-  <div id="panel-pegunungan" class="dest-panel active">
-    <div id="cards-pegunungan"></div>
-    <div id="footer-pegunungan"></div>
-  </div>
-
-  <!-- Panel: PANTAI -->
-  <div id="panel-pantai" class="dest-panel">
-    <div id="cards-pantai"></div>
-    <div id="footer-pantai"></div>
-  </div>
-
-  <!-- Panel: KULINER -->
-  <div id="panel-kuliner" class="dest-panel">
-    <div id="cards-kuliner"></div>
-    <div id="footer-kuliner"></div>
-  </div>
-
-  <!-- Panel: MUSEUM -->
-  <div id="panel-museum" class="dest-panel">
-    <div id="cards-museum"></div>
-    <div id="footer-museum"></div>
-  </div>
-</div><!-- /page-dest -->
 
 
 <!-- Loading overlay -->
@@ -1045,236 +1124,78 @@ body {
   </div>
 </div>
 
+
 </div><!-- /app -->
+
 
 <script>
 /* ══════════════════════════════
-   DATA — POPULER & REKOM
+   DATA
 ══════════════════════════════ */
 const destinations = [
-  { nama:"Tanjung Bira",        img:"images/tanjung bira.jpg",        fb:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&fit=crop",  type:"Pantai",     rating:"4.6" },
-  { nama:"Benteng Rotterdam",   img:"images/benteng rotterdam.jpg",    fb:"https://images.unsplash.com/photo-1520531158340-44015069e78e?w=300&fit=crop",  type:"Museum",     rating:"4.5" },
-  { nama:"Pallubasa Serigala",  img:"images/pallubasa.jpeg",           fb:"https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=300&fit=crop",  type:"Kuliner",    rating:"4.7" },
-  { nama:"Hutan Pinus Malino",  img:"images/malino.jpg",               fb:"https://images.unsplash.com/photo-1448375240586-882707db888b?w=300&fit=crop",  type:"Pegunungan", rating:"4.7" },
-  { nama:"Pantai Losari",       img:"images/losari.jpg",               fb:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&fit=crop",  type:"Pantai",     rating:"4.6" },
-  { nama:"Air Terjun Takapala", img:"images/air terjun takapala.jpg",  fb:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&fit=crop",  type:"Pegunungan", rating:"4.5" },
-  { nama:"Konro Karebosi",      img:"images/konro.jpg",                fb:"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&fit=crop",  type:"Kuliner",    rating:"4.3" },
-  { nama:"Ati Raja",            img:"images/ati raja.jpg",             fb:"https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300&fit=crop",  type:"Kuliner",    rating:"4.4" },
-  { nama:"Museum Buntu Kalando",img:"images/Museum Buntu Kalando.jpg", fb:"https://images.unsplash.com/photo-1533105079780-92b9be482077?w=300&fit=crop",  type:"Museum",     rating:"4.2" },
-  { nama:"Monumen Mandala",     img:"images/monumen mandala.png",      fb:"https://images.unsplash.com/photo-1520531158340-44015069e78e?w=300&fit=crop",  type:"Museum",     rating:"4.5" }
+  { nama:"Tanjung Bira",       img:"images/tanjung bira.jpg",           fb:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&fit=crop",       type:"Pantai",     rating:"4.6" },
+  { nama:"Benteng Rotterdam",  img:"images/benteng rotterdam.jpg",       fb:"https://images.unsplash.com/photo-1520531158340-44015069e78e?w=300&fit=crop",       type:"Museum",     rating:"4.5" },
+  { nama:"Pallubasa Serigala", img:"images/pallubasa.jpeg",              fb:"https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=300&fit=crop",       type:"Kuliner",    rating:"4.7" },
+  { nama:"Hutan Pinus Malino", img:"images/malino.jpg",                  fb:"https://images.unsplash.com/photo-1448375240586-882707db888b?w=300&fit=crop",       type:"Pegunungan", rating:"4.7" },
+  { nama:"Pantai Losari",      img:"images/losari.jpg",                  fb:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&fit=crop",       type:"Pantai",     rating:"4.6" },
+  { nama:"Air Terjun Takapala",img:"images/air terjun takapala.jpg",     fb:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&fit=crop",       type:"Pegunungan", rating:"4.5" },
+  { nama:"Konro Karebosi",     img:"images/konro.jpg",                   fb:"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&fit=crop",       type:"Kuliner",    rating:"4.3" },
+  { nama:"Ati Raja",           img:"images/ati raja.jpg",                fb:"https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300&fit=crop",       type:"Kuliner",    rating:"4.4" },
+  { nama:"Museum Buntu Kalando",img:"images/Museum Buntu Kalando.jpg",   fb:"https://images.unsplash.com/photo-1533105079780-92b9be482077?w=300&fit=crop",       type:"Museum",     rating:"4.2" },
+  { nama:"Monumen Mandala",    img:"images/monumen mandala.png",         fb:"https://images.unsplash.com/photo-1520531158340-44015069e78e?w=300&fit=crop",       type:"Museum",     rating:"4.5" }
 ];
+
 
 const rekomDetail = [
-  { nama:"Tanjung Bira",       img:"images/tanjung bira.jpg",         fb:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&fit=crop", desc:"Tanjung Bira adalah Pantai yang terkenal dengan pasir putihnya ini sangat nyaman dan mudah dijangkau.", lokasi:"Bira, Kec. Bonto Bahari, Kabupaten Bulukumba, Sulawesi Selatan", harga:"Mulai dari Rp20.000", aktivitas:"Snorkeling, Berenang, Fotografi", rating:"4.6" },
-  { nama:"Benteng Rotterdam",  img:"images/benteng rotterdam.jpg",     fb:"https://images.unsplash.com/photo-1520531158340-44015069e78e?w=300&fit=crop", desc:"Benteng Rotterdam atau Benteng Ujung Pandang adalah benteng peninggalan Kerajaan Gowa-Tallo.", lokasi:"Jl. Ujung Pandang, Bulo Gading, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp5.000", aktivitas:"Walking Tour, Budaya, Edukasi", rating:"4.5" },
-  { nama:"Pallubasa Serigala", img:"images/pallubasa.jpeg",            fb:"https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=300&fit=crop", desc:"Pallubasa salah satu makanan khas Makassar, berupa olahan daging dengan kuah yang khas.", lokasi:"Jl. Serigala No.56, Mamajang Dalam, Kec. Mamajang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp39.000", aktivitas:"Menikmati Pallubasa Khas Makassar", rating:"4.7" },
-  { nama:"Hutan Pinus Malino", img:"images/malino.jpg",                fb:"https://images.unsplash.com/photo-1448375240586-882707db888b?w=300&fit=crop", desc:"Pemandangan hamparan pohon pinus yang luas dan hijau dengan udara sejuk.", lokasi:"Jl. Sultan Hasanuddin, Malino, Kec. Tinggimoncong, Kabupaten Gowa, Sulawesi Selatan", harga:"Mulai dari Rp10.000", aktivitas:"Fotografi Alam, Piknik, Naik Kuda", rating:"4.7" },
-  { nama:"Pantai Losari",      img:"images/losari.jpg",                fb:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&fit=crop", desc:"Pantai ini terkenal dengan panorama lautnya yang indah dan menawan, terutama saat matahari terbenam.", lokasi:"Jl. Somba OPU No.57, Maloku, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Gratis", aktivitas:"Menikmati Sunset, Fotografi, Kuliner", rating:"4.6" },
-  { nama:"Air Terjun Takapala",img:"images/air terjun takapala.jpg",   fb:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&fit=crop", desc:"Salah satu destinasi wisata paling ikonik di kawasan dataran tinggi Malino, Kab. Gowa.", lokasi:"Bonto Lerung, Kec. Tinggimoncong, Kab. Gowa, Sulawesi Selatan", harga:"Mulai dari Rp3.000", aktivitas:"Berenang, Piknik, Menikmati Air Terjun", rating:"4.5" },
-  { nama:"Konro Karebosi",     img:"images/konro.jpg",                 fb:"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&fit=crop", desc:"Hidangan iga sapi bakar dengan tekstur empuk dan cita rasa khas berkat perpaduan rempah Nusantara.", lokasi:"Jl. Gn. Lompobattang No.41-43, Pisang Utara, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp60.000", aktivitas:"Menikmati Konro Khas Makassar", rating:"4.3" },
-  { nama:"Ati Raja",           img:"images/ati raja.jpg",              fb:"https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300&fit=crop", desc:"Bakso yang dikenal dengan kelezatan dan kualitasnya yang tinggi dibuat dari daging sapi pilihan.", lokasi:"Jl. Gn. Merapi No.170, Lajangiru, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp37.000", aktivitas:"Menikmati Bakso Ati Raja", rating:"4.4" },
-  { nama:"Museum Buntu Kalando",img:"images/Museum Buntu Kalando.jpg", fb:"https://images.unsplash.com/photo-1533105079780-92b9be482077?w=300&fit=crop", desc:"Museum ini menjadi tempat pelestarian benda-benda peninggalan budaya Tana Toraja.", lokasi:"RW.lobe, Tongko Sarapung, Kec. Sangalla, Kabupaten Tana Toraja, Sulawesi Selatan", harga:"Gratis", aktivitas:"Fotografi, Eksplorasi Budaya Toraja", rating:"4.2" },
-  { nama:"Monumen Mandala",    img:"images/monumen mandala.png",       fb:"https://images.unsplash.com/photo-1520531158340-44015069e78e?w=300&fit=crop", desc:"Monumen ini menyimpan koleksi penting, seperti relief, 24 diorama, pakaian perjuangan, dan senjata.", lokasi:"Jl. Jend. Sudirman, Sawerigading, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp5.000", aktivitas:"Edukasi Sejarah, Eksplorasi Monumen", rating:"4.5" }
+  { nama:"Tanjung Bira",       kategori: "Pantai",      img:"images/tanjung bira.jpg",           fb:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&fit=crop",       desc:"Tanjung Bira adalah Pantai yang terkenal dengan pasir putihnya ini sangat nyaman dan mudah dijangkau.", lokasi:"Bira, Kec. Bonto Bahari, Kabupaten Bulukumba, Sulawesi Selatan", harga:"Mulai dari Rp20.000", aktivitas:"Snorkeling, Berenang, Fotografi", rating:"4.6" },
+  { nama:"Benteng Rotterdam",  kategori: "Museum",      img:"images/benteng rotterdam.jpg",       fb:"https://images.unsplash.com/photo-1520531158340-44015069e78e?w=300&fit=crop",       desc:"Benteng Rotterdam atau Benteng Ujung Pandang adalah benteng peninggalan Kerajaan Gowa-Tallo.", lokasi:"Jl. Ujung Pandang, Bulo Gading, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp5.000", aktivitas:"Walking Tour, Budaya, Edukasi", rating:"4.5" },
+  { nama:"Pallubasa Serigala", kategori: "Kuliner",     img:"images/pallubasa.png",               fb:"https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=300&fit=crop",       desc:"Pallubasa salah satu makanan khas Makassar, berupa olahan daging dengan kuah yang khas.", lokasi:"Jl. Serigala No.56, Mamajang Dalam, Kec. Mamajang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp39.000", aktivitas:"Menikmati Pallubasa Khas Makassar", rating:"4.7" },
+  { nama:"Hutan Pinus Malino", kategori: "Pegunungan",  img:"images/malino.jpg",                  fb:"https://images.unsplash.com/photo-1448375240586-882707db888b?w=300&fit=crop",       desc:"Pemandangan hamparan pohon pinus yang luas dan hijau dengan udara sejuk, keunggulan kawasan wisata.", lokasi:"Jl. Sultan Hasanuddin, Malino, Kec. Tinggimoncong, Kabupaten Gowa, Sulawesi Selatan", harga:"Mulai dari Rp10.000", aktivitas:"Fotografi Alam, Piknik, Naik Kuda", rating:"4.7" },
+  { nama:"Pantai Losari",      kategori: "Pantai",      img:"images/losari.jpg",                  fb:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&fit=crop",       desc:"Pantai ini terkenal dengan panorama lautnya yang indah dan menawan, terutama saat matahari terbenam.", lokasi:"Jl. Somba OPU No.57, Maloku, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Gratis", aktivitas:"Menikmati Sunset, Fotografi, Kuliner", rating:"4.6" },
+  { nama:"Air Terjun Takapala", kategori: "Pegunungan", img:"images/air terjun takapala.jpg",     fb:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&fit=crop",       desc:"Salah satu destinasi wisata paling ikonik di kawasan dataran tinggi Malino, Kab. Gowa, Sulawesi Selatan.", lokasi:"Bonto Lerung, Kec. Tinggimoncong, Kab. Gowa, Sulawesi Selatan", harga:"Mulai dari Rp3.000", aktivitas:"Berenang, Piknik, Menikmati Air Terjun", rating:"4.5" },
+  { nama:"Konro Karebosi",     kategori: "Kuliner",     img:"images/konro.jpg",                   fb:"https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&fit=crop",       desc:"Hidangan iga sapi bakar dengan tekstur empuk dan cita rasa khas berkat perpaduan rempah Nusantara.", lokasi:"Jl. Gn. Lompobattang No.41-43, Pisang Utara, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp60.000", aktivitas:"Menikmati Konro Khas Makassar", rating:"4.3" },
+  { nama:"Ati Raja",           kategori: "Kuliner",     img:"images/ati raja.jpg",                fb:"https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300&fit=crop",       desc:"Bakso yang dikenal dengan kelezatan dan kualitasnya yang tinggi dibuat dari daging sapi pilihan.", lokasi:"Jl. Gn. Merapi No.170, Lajangiru, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp37.000", aktivitas:"Menikmati Bakso Ati Raja", rating:"4.4" },
+  { nama:"Museum Buntu Kalando", kategori: "Museum",    img:"images/Museum Buntu Kalando.jpg",   fb:"https://images.unsplash.com/photo-1533105079780-92b9be482077?w=300&fit=crop",       desc:"Museum ini menjadi tempat pelestarian benda-benda peninggalan budaya Tana Toraja.", lokasi:"RW.lobe, Tongko Sarapung, Kec. Sangalla, Kabupaten Tana Toraja, Sulawesi Selatan", harga:"Gratis", aktivitas:"Fotografi, Eksplorasi Budaya Toraja", rating:"4.2" },
+  { nama:"Monumen Mandala",   kategori: "Museum",       img:"images/monumen mandala.png",         fb:"https://images.unsplash.com/photo-1520531158340-44015069e78e?w=300&fit=crop",       desc:"Monumen ini menyimpan koleksi penting, seperti relief, 24 diorama, pakaian perjuangan, dan senjata.", lokasi:"Jl. Jend. Sudirman, Sawerigading, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp5.000", aktivitas:"Edukasi Sejarah, Eksplorasi Monumen", rating:"4.5" }
 ];
+
 
 /* ══════════════════════════════
-   DATA DESTINASI (dari 4 file)
+   HELPER SVG ICONS
 ══════════════════════════════ */
-const dataPegunungan = [
-  { nama:"Rammang-Rammang", gambar:"images/rammang2.jpg", deskripsi:"Pemandangan tebing kapur purba, menyusuri Sungai Pute, gua prasejarah, serta suasana asri nan magis.", lokasi:"Jl. Dermaga 2 Rammang - Rammang Desa Salenrang, Kabupaten Maros, Sulawesi Selatan", harga:"Mulai Rp5.000", aktivitas:"Susur Sungai, Eksplorasi Gua, Fotografi", rating:"" },
-  { nama:"Bulu Dua", gambar:"images/bulu dua.jpg", deskripsi:"Panorama hutan tropis yang rimbun, danau yang indah, serta air terjun yang memukau.", lokasi:"Gattareng Toa, Kec. Mario Riwawo, Kabupaten Soppeng, Sulawesi Selatan", harga:"Mulai Rp20.000", aktivitas:"Menyaksikan koloni kelelawar, Relaksasi", rating:"" },
-  { nama:"Buttu Macca", gambar:"images/buttu macca.jpg", deskripsi:"Panorama Gunung Nona dan Gunung Bambapuang yang memukau dari ketinggian, ada wahana flying fox.", lokasi:"Bamba Puang, Kec. Anggeraja, Kabupaten Enrekang, Sulawesi Selatan", harga:"Mulai Rp10.000", aktivitas:"Menikmati wahana rekreasi, Relaksasi", rating:"" },
-  { nama:"Negeri di Atas Awan", gambar:"images/negeri diatas awan.jpg", deskripsi:"Fenomena kabut tebal yang menyerupai lautan kapas di pagi hari, dipadukan dengan cahaya matahari terbit.", lokasi:"Lolai, Kec. Kapala Pitu, Kabupaten Toraja Utara, Sulawesi Selatan", harga:"Mulai Rp15.000", aktivitas:"Lautan awan, Sunrise, Fotografi, Camping", rating:"" },
-  { nama:"Lappa Laona", gambar:"images/lappa laona.jpg", deskripsi:"Lappa Laona ini padang rerumputan hijau yang luas, cocok untuk pengunjung yang hobby berjelajah.", lokasi:"Dusun Waruwue, Desa Harapan, Kec. Tanete Riaja, Kabupaten Barru, Sulawesi Selatan", harga:"Mulai Rp5.000", aktivitas:"Berkuda, Panorama, Fotografi, Camping", rating:"" },
-  { nama:"Latimojong (3.478 mdpl)", gambar:"images/latimojong.jpg", deskripsi:"Latimojong adalah pegunungan tertinggi di Sulawesi dengan alam yang masih asri.", lokasi:"Dusun Karangan, Desa Latimojong, Kec. Baraka, Kabupaten Enrekang, Sulawesi Selatan", harga:"Tidak memiliki harga tiket masuk resmi", aktivitas:"Pendakian, Camping, Fotografi, Panorama", rating:"" },
-  { nama:"Rantekombola (3.455 mdpl)", gambar:"images/rantekombola.jpg", deskripsi:"Kawasan pegunungan yang menjadi lokasi Gunung Rantekombola sebagai puncak tertinggi.", lokasi:"Uluwai, Kec. Mengkendek, Kabupaten Tana Toraja, Sulawesi Selatan", harga:"Tidak memiliki harga tiket masuk resmi", aktivitas:"Pendakian, Camping, Fotografi, Panorama", rating:"" },
-  { nama:"Balease (3.016 mdpl)", gambar:"images/balease.jpg", deskripsi:"Gunung Balease adalah puncak tertinggi Luwu Utara dengan medan ekstrem dan jalur hutan rapat.", lokasi:"Kec. Mappedeceng, Kabupaten Luwu Utara, Sulawesi Selatan", harga:"Tidak memiliki harga tiket masuk resmi", aktivitas:"Ekspedisi, Pendakian, Camping, Fotografi", rating:"" },
-  { nama:"Gunung Karua (2.670 mdpl)", gambar:"images/karua.jpg", deskripsi:"Jalur yang lumayan sulit, kelestarian alamnya pun sangat terjaga.", lokasi:"Kecamatan Bituang, Makale, Kabupaten Tana Toraja, Sulawesi Selatan", harga:"Tidak memiliki harga tiket masuk resmi", aktivitas:"Pendakian, Wisata Alam, Fotografi", rating:"" },
-  { nama:"Gunung Kambuno (2.950 mdpl)", gambar:"images/kambuno.jpg", deskripsi:"Menawarkan keindahan alam khas pegunungan tropis dan salah satu destinasi pendakian di Luwu.", lokasi:"Kec. Limbong (Rongkong), Kab. Luwu Utara, Sulawesi Selatan", harga:"Tidak memiliki harga tiket masuk resmi", aktivitas:"Pendakian, Camping, Berkemah", rating:"" },
-  { nama:"Gunung Sesean (2.100 mdpl)", gambar:"images/sesean.jpg", deskripsi:"Favorit para wisatawan karena menawarkan akses yang relatif mudah bagi pendaki pemula.", lokasi:"Sesean Matallo, Kec. Sesean, Kabupaten Toraja Utara, Sulawesi Selatan", harga:"Tidak memiliki harga tiket masuk resmi", aktivitas:"Pendakian, Trekking Santai, Fotografi", rating:"" },
-  { nama:"Gunung Nona (1.580 mdpl)", gambar:"images/nona.jpg", deskripsi:"Menawarkan perpaduan pemandangan bukit karst yang hijau dan udara pegunungan yang sejuk.", lokasi:"Rosoan, Kec. Enrekang, Kabupaten Enrekang, Sulawesi Selatan", harga:"Tidak memiliki harga tiket masuk resmi", aktivitas:"Pendakian, Camping, Fotografi, Relaksasi", rating:"" },
-  { nama:"Lembah Lohe (1.930 mdpl)", gambar:"images/lembah lohe.jpg", deskripsi:"Lembah ini sering dijuluki sebagai Negeri Dongeng karena keindahan alamnya yang masih sangat alami.", lokasi:"Lembah Loe, Kec. Parigi, Kabupaten Gowa, Sulawesi Selatan", harga:"Tidak memiliki harga tiket masuk resmi", aktivitas:"Pendakian, Camping, Memancing", rating:"" },
-  { nama:"Bulu Baria (2.730 mdpl)", gambar:"images/bulu baria.jpg", deskripsi:"Dikenal sebagai salah satu gunung terbersih di Sulawesi dengan konsep Zero Waste Mountain.", lokasi:"Desa Manimbahoi, Kecamatan Parigi, Kabupaten Gowa, Sulawesi Selatan", harga:"Tidak memiliki harga tiket masuk resmi", aktivitas:"Pendakian Zero Waste, Camping", rating:"" },
-  { nama:"Bulusaraung (1.353 mdpl)", gambar:"images/bulusaraung.jpg", deskripsi:"Bagian dari Taman Nasional Bantimurung Bulusaraung dengan tebing terjal dan hutan tropis lebat.", lokasi:"Tompo Bulu, Kec. Balocci, Kabupaten Pangkajene Dan Kepulauan, Sulawesi Selatan", harga:"Tidak memiliki harga tiket masuk resmi", aktivitas:"Pendakian, Camping, Lautan Awan", rating:"" },
-  { nama:"Hutan Pinus Malino", gambar:"images/malino.jpg", deskripsi:"Pemandangan hamparan pohon pinus yang luas dan hijau dengan udara sejuk.", lokasi:"Jl. Sultan Hasanuddin, Malino, Kec. Tinggimoncong, Kabupaten Gowa, Sulawesi Selatan", harga:"Mulai Rp10.000", aktivitas:"Fotografi Alam, Piknik, Naik Kuda", rating:"⭐ 4.7" },
-  { nama:"Gunung Bahong Langi (1.988 mdpl)", gambar:"images/gunung bahong langi.jpg", deskripsi:"Terkenal dengan keindahan negeri di atas awan yang menakjubkan pada pagi hari.", lokasi:"Bontojai, Kec. Bontocani, Kabupaten Bone, Sulawesi Selatan", harga:"Tidak memiliki harga tiket masuk resmi", aktivitas:"Pendakian, Camping, Lautan Awan", rating:"" },
-  { nama:"Gunung Tondong Karambu (1.700 mdpl)", gambar:"images/gunung tondong karambu.jpg", deskripsi:"Gunung ini merupakan kawasan karst terluas kedua di dunia.", lokasi:"Gattareng, Kec. Pujananting, Kabupaten Barru, Sulawesi Selatan", harga:"Tidak memiliki harga tiket masuk resmi", aktivitas:"Pendakian, Camping, Lautan Awan", rating:"" },
-  { nama:"Gunung Kappire (1.100 mdpl)", gambar:"images/gunung kappire.jpg", deskripsi:"Masih banyak traveler yang belum mengetahui tempat ini karena suasananya masih asri.", lokasi:"Pange, Palakka, Kec. Barru, Kabupaten Barru, Sulawesi Selatan", harga:"Tidak memiliki harga tiket masuk resmi", aktivitas:"Pendakian, Camping, Lautan Awan", rating:"" },
-  { nama:"Air Terjun Takapala", gambar:"images/air terjun takapala.jpg", deskripsi:"Salah satu destinasi wisata paling ikonik di kawasan dataran tinggi Malino, Kab. Gowa.", lokasi:"Bonto Lerung, Kec. Tinggimoncong, Kab. Gowa, Sulawesi Selatan", harga:"Mulai Rp3.000", aktivitas:"Berenang, Piknik, Menikmati Air Terjun", rating:"⭐ 4.5" },
-  { nama:"Gunung Bawakaraeng (2.830 mdpl)", gambar:"images/gunung bawakaraeng.jpg", deskripsi:"Pendakian favorit dengan hutan lumut, pemandangan eksotis, dan suhu terdingin.", lokasi:"Gn. Perak, Kec. Sinjai Bar., Kabupaten Sinjai, Sulawesi Selatan", harga:"Tidak memiliki harga tiket masuk resmi", aktivitas:"Pendakian & Hiking, Fotografi", rating:"" },
-  { nama:"Gunung Bambapuang (1.021 mdpl)", gambar:"images/gunung bambapuang.jpg", deskripsi:"Gunung ini populer sebagai destinasi pendakian ringan dan menawarkan pemandangan alam yang indah.", lokasi:"Gn. Perak, Kec. Sinjai Bar., Kabupaten Sinjai, Sulawesi Selatan", harga:"Tidak memiliki harga tiket masuk resmi", aktivitas:"Pendakian santai, Trail running", rating:"" },
-  { nama:"Gunung Bulu Saukang (332 mdpl)", gambar:"images/gunung bulu saukang.jpg", deskripsi:"Menawarkan jalur menantang namun singkat, cocok untuk healing singkat dekat Makassar.", lokasi:"Benteng Gajah, Kec. Tompobulu, Kabupaten Maros, Sulawesi Selatan", harga:"Tidak memiliki harga tiket masuk resmi", aktivitas:"Pendakian santai, Fotografi", rating:"" },
-  { nama:"Danau Tanralili", gambar:"images/danau tanralili.jpg", deskripsi:"Danau yang terbentuk akibat longsoran gunung hingga membentuk cekungan ke dalam.", lokasi:"Manimbahoi, Kec. Parigi, Kabupaten Gowa, Sulawesi Selatan", harga:"Mulai Rp5.000", aktivitas:"Pendakian, Fotografi, Camping", rating:"" },
-  { nama:"Lembah Ramma", gambar:"images/lembah ramma.jpg", deskripsi:"Di Lembah Ramma ini, Anda akan disuguhkan kesegaran dari pegunungan yang mengelilingi.", lokasi:"Bonto Lerung, Kec. Tinggimoncong, Kabupaten Gowa, Sulawesi Selatan", harga:"Mulai Rp10.000", aktivitas:"Pendakian, Bertamasya, Camping", rating:"" },
-  { nama:"Pangngalleang toppa'", gambar:"images/pangngalleang toppa.jpg", deskripsi:"Desa Wisata ini memiliki keunikan yaitu tangga refleksi anti rematik.", lokasi:"Pakatto, Kec. Bontomarannu, Kabupaten Gowa, Sulawesi Selatan", harga:"Mulai Rp5.000", aktivitas:"Pendakian santai, Terapi, Fotografi", rating:"" },
-];
+const igSvg = `<svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>`;
+const waSvg = `<svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
 
-const dataPantai = [
-  { nama:"Pantai Apparalang", gambar:"images/apparalang.jpg", deskripsi:"Pemandangan tebing karang memanjang laut biru jernih, dan spot cliff jumping yang memacu adrenalin.", lokasi:"Dusun Kadien, Ara, Kec. Bonto Bahari, Kabupaten Bulukumba, Sulawesi Selatan", harga:"Mulai dari 5.000", aktivitas:"Berenang, Panorama Laut, Fotografi", rating:"" },
-  { nama:"Tanjung Palette", gambar:"images/tanjung palette.jpg", deskripsi:"Pemandangan tebing karang terjal yang berbatasan langsung dengan laut biru jernih Teluk Bone.", lokasi:"Jl. Tj. Raya No.1, Pallette, Kec. Tanete Riattang Tim., Kabupaten Bone, Sulawesi Selatan", harga:"Mulai dari Rp5.000", aktivitas:"Fotografi, Berenang, Panorama, Wahana, Diving", rating:"" },
-  { nama:"Taman Nasional Taka Bonerate", gambar:"images/taman nasional taka bonerate.jpg", deskripsi:"Kawasan atol terbesar ketiga di dunia, dengan keindahan terumbu karang yang luas dan utuh.", lokasi:"Pulau Tinabo Besar, Kec. Taka Bonerate, Kab. Kepulauan Selayar, Sulawesi Selatan", harga:"WNI Rp5.000 dan WNA Rp150.000", aktivitas:"Snorkeling, Island Hopping, Diving", rating:"" },
-  { nama:"Pantai Panrang Luhu", gambar:"images/panrang luhu.jpg", deskripsi:"Pantai ini menawarkan pasir putih halus, air jernih, pohon kelapa rindang, serta menyaksikan sunrise.", lokasi:"Kec. Bonto Bahari, Kabupaten Bulukumba, Sulawesi Selatan", harga:"Mulai dari Rp5.000", aktivitas:"Berenang, Sunrise, Bersantai, Fotografi", rating:"" },
-  { nama:"Pantai Topejawa", gambar:"images/topejawa.jpg", deskripsi:"Destinasi wisata keluarga yang menawarkan kombinasi kolam renang, permainan air hingga spot foto.", lokasi:"Topejawa, Kec. Mangarabombang, Kabupaten Takalar, Sulawesi Selatan", harga:"Mulai dari Rp20.000", aktivitas:"Bersantai, Fotografi, Berenang", rating:"" },
-  { nama:"Pantai Mattirotasi", gambar:"images/pantai mattirotasi.jpg", deskripsi:"Pantai terpanjang di Parepare dengan pemandangan laut, sunset, dan spot santai.", lokasi:"Jl. Mattiro Tasi No.125, Kp. Baru, Kec. Bacukiki Bar., Kota Parepare, Sulawesi Selatan", harga:"Gratis", aktivitas:"Bersantai, Fotografi, Menikmati sunset", rating:"" },
-  { nama:"Lasonrai Beach", gambar:"images/lasonrai beach.jpg", deskripsi:"Pantai dengan pasir putih dan pemandangan laut jernih yang cocok untuk bersantai.", lokasi:"Ujunge, Batupute, Kec. Soppeng Riaja, Kabupaten Barru, Sulawesi Selatan", harga:"Mulai dari 10.000", aktivitas:"Bersantai, Menikmati pemandangan", rating:"" },
-  { nama:"Pantai Akkarena", gambar:"images/pantai akkarenaa.jpg", deskripsi:"Pantai pasir hitam yang populer untuk melihat matahari terbenam & jet ski, dengan taman bermain.", lokasi:"Jalan Tanjung Bunga, Tj. Merdeka, Kec. Tamalate, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp10.000", aktivitas:"Bersantai, Fotografi, Berenang", rating:"" },
-  { nama:"Pantai Lemo-Lemo", gambar:"images/pantai lemolemo.jpg", deskripsi:"Pantai dengan pasir putih dan air laut jernih serta suasana yang tenang.", lokasi:"Tanah Lemo, Kec. Bonto Bahari, Kabupaten Bulukumba, Sulawesi Selatan", harga:"Gratis", aktivitas:"Bersantai, Fotografi, Berenang, Snorkeling", rating:"" },
-  { nama:"Pantai Indah Bosowa", gambar:"images/pantai bosowa.jpg", deskripsi:"Pantai populer dengan panorama indah dan suasana santai dekat pusat kota Makassar.", lokasi:"Tj. Merdeka, Kec. Tamalate, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp10.000", aktivitas:"Bersantai, Fotografi, Berenang, Sunset", rating:"" },
-  { nama:"Pantai Biru", gambar:"images/pantai biru.jpg", deskripsi:"Pantai dengan air laut biru jernih dan suasana tenang yang cocok untuk wisata keluarga.", lokasi:"Jalan Tanjung Bunga, Tj. Merdeka, Kec. Tamalate, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp5.000", aktivitas:"Bersantai, Menikmati sunset, Berenang", rating:"" },
-  { nama:"Pantai Pinang", gambar:"images/pantai pinang.jpg", deskripsi:"Pantai pasir putih terpencil yang tenang dengan pohon palem dan snorkeling.", lokasi:"Desa Lowa/Patilereng, Kecamatan Bontosikuyu, Kabupaten Kepulauan Selayar, Sulawesi Selatan", harga:"Gratis", aktivitas:"Snorkeling, Berenang, Bersantai", rating:"" },
-  { nama:"Pantai Tanjung Bira", gambar:"images/tanjung bira.jpg", deskripsi:"Tanjung Bira adalah Pantai yang terkenal dengan pasir putihnya ini sangat nyaman dan mudah dijangkau.", lokasi:"Bira, Kec. Bonto Bahari, Kabupaten Bulukumba, Sulawesi Selatan", harga:"Mulai dari Rp20.000", aktivitas:"Snorkeling, Berenang, Fotografi", rating:"⭐ 4.6" },
-  { nama:"Pantai Losari", gambar:"images/losari.jpg", deskripsi:"Pantai ini terkenal dengan panorama lautnya yang indah dan menawan, terutama saat matahari terbenam.", lokasi:"Jl. Somba OPU No.57, Maloku, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Gratis", aktivitas:"Menikmati Sunset, Fotografi, Kuliner", rating:"⭐ 4.6" },
-  { nama:"Pantai Bara", gambar:"images/pantai baraa.jpg", deskripsi:"Pantai berpasir putih dengan air laut jernih, suasana tenang, dan pemandangan alam yang masih alami.", lokasi:"Bira, Kec. Bonto Bahari, Kabupaten Bulukumba, Sulawesi Selatan", harga:"Mulai dari Rp15.000", aktivitas:"Berenang, Camping, Fotografi, Menikmati sunset", rating:"" },
-  { nama:"Pantai Ujung Suso", gambar:"images/pantai ujung suso.jpg", deskripsi:"Pantai dengan nuansa Bali, pasir putih, dengan pemandangan laut indah yang unik.", lokasi:"Mabonta, Kec. Burau, Kabupaten Luwu Timur, Sulawesi Selatan", harga:"Gratis", aktivitas:"Bersantai, Fotografi, Berenang", rating:"" },
-  { nama:"Pantai Marina", gambar:"images/pantai marina.jpg", deskripsi:"Pantai dengan konsep wisata keluarga, fasilitas lengkap, dan suasana santai di tepi laut.", lokasi:"Baruga, Kec. Pajukukang, Kabupaten Bantaeng, Sulawesi Selatan", harga:"Dewasa Rp40.000 dan Anak Rp10.000", aktivitas:"Bersantai, Menikmati pemandangan", rating:"" },
-  { nama:"Pantai Seruni", gambar:"images/pantai seruni.jpg", deskripsi:"Pantai hasil reklamasi dengan pemandangan indah, bersih, dan menjadi ikon wisata Bantaeng.", lokasi:"Jl. Mawar, Pallantikang, Kec. Bantaeng, Kabupaten Bantaeng, Sulawesi Selatan", harga:"Mulai dari Rp10.000", aktivitas:"Menikmati sunset, Jogging, Bersantai", rating:"" },
-  { nama:"Pantai Galesong", gambar:"images/pantai galesong.jpg", deskripsi:"Pantai dengan pemandangan laut luas, pasir gelap, dan kawasan wisata yang nyaman.", lokasi:"Desa Tamalate, Kecamatan Galesong Utara, Kabupaten Takalar, Sulawesi Selatan", harga:"Mulai dari Rp15.000", aktivitas:"Bersantai, Berenang, Bermain air", rating:"" },
-  { nama:"Pantai Tanjung Bayang", gambar:"images/pantai tanjung bayang.jpg", deskripsi:"Pantai Tanjung Bayang adalah pantai tenang di Makassar, cocok untuk santai dan menikmati sunset.", lokasi:"Selat, Tj. Merdeka, Kec. Tamalate, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp5.000", aktivitas:"Bersantai, Berenang, Bermain air", rating:"" },
-  { nama:"Pantai Barugaya Punaga", gambar:"images/pantai barugaya punaga.jpg", deskripsi:"Pantai Barugaya Punaga adalah pantai indah di Takalar dengan air jernih dan suasana tenang.", lokasi:"Punaga, Kec. Mangarabombang, Kabupaten Takalar, Sulawesi Selatan", harga:"Mulai dari Rp15.000", aktivitas:"Bersantai, Menikmati Sunset, Bermain Air", rating:"" },
-  { nama:"Pantai Anging Mammiri", gambar:"images/pantai anging mammiri.jpg", deskripsi:"Pantai Angin Mammiri adalah pantai santai di Makassar dengan angin sepoi dan suasana tenang.", lokasi:"Jl. Metro Tj. Bunga, Tj. Merdeka, Kec. Tamalate, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp10.000", aktivitas:"Bersantai, Bermain Air, Menikmati Sunset", rating:"" },
-  { nama:"Pantai Tanjung Barat Barombong", gambar:"images/pantai barombong.jpg", deskripsi:"Menawarkan hamparan laut terbuka dengan suasana lebih sepi di Makassar, cocok untuk melepas penat.", lokasi:"Unnamed Road, Barombong, Kec. Tamalate, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp5.000", aktivitas:"Bersantai, Bermain Air, Menikmati Sunset", rating:"" },
-  { nama:"Pantai Tanjung Layar Putih", gambar:"images/pantai tanjung layar putih.jpg", deskripsi:"Pantai Tanjung Layar Putih memiliki pasir terang dan panorama laut yang luas di Makassar.", lokasi:"Unnamed Road, Tanjung Merdeka, Tamalate, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp5.000", aktivitas:"Bersantai, Fotografi, Menikmati Sunset", rating:"" },
-  { nama:"Pantai Laguna", gambar:"images/pantai laguna.jpg", deskripsi:"Pantai Laguna adalah pantai dengan air jernih dan suasana tenang di Barru.", lokasi:"Pao-Pao, Kec. Tanete Rilau, Kabupaten Barru, Sulawesi Selatan", harga:"Mulai dari Rp20.000", aktivitas:"Berenang, Menikmati Pemandangan", rating:"" },
-  { nama:"Wisata Pantai Bintang Galesong", gambar:"images/pantai galesong.jpg", deskripsi:"Wisata Pantai Bintang Galesong adalah pantai populer dengan area rekreasi keluarga di Galesong.", lokasi:"Jl. Karaeng Salamaka Kassi Lompo, Boddia, Kec. Galesong, Kabupaten Takalar, Sulawesi Selatan", harga:"Mulai dari Rp15.000", aktivitas:"Bermain Wahana Air, Bersantai", rating:"" },
-  { nama:"Pantai Marumasa", gambar:"images/pantai marumasa.jpg", deskripsi:"Pantai Marumasa memiliki suasana pantai yang masih alami dengan garis pantai yang tenang di Bulukumba.", lokasi:"Darubiah, Kec. Bonto Bahari, Kabupaten Bulukumba, Sulawesi Selatan", harga:"Mulai dari Rp3.000", aktivitas:"Bermain Air, Bersantai, Menikmati Sunset", rating:"" },
-  { nama:"Sunset Quay Best View", gambar:"images/sunset quay.jpg", deskripsi:"Spot tepi laut untuk menikmati pemandangan matahari terbenam di Makassar.", lokasi:"Kec. Makassar, Kota Makassar, Sulawesi Selatan", harga:"Gratis", aktivitas:"Menikmati Sunset, Bersantai, Fotografi", rating:"" },
-  { nama:"Pantai Pulau Liukang Loe", gambar:"images/pantai liukang loe.jpg", deskripsi:"Terkenal dengan pasir putih halus, air laut biru toska yang sangat jernih, serta terumbu karang terawat.", lokasi:"Darubiah, Kec. Bonto Bahari, Kabupaten Bulukumba, Sulawesi Selatan", harga:"Mulai dari Rp10.000", aktivitas:"Snorkeling, Berenang, Menjelajah Pulau", rating:"" },
-  { nama:"Pantai Pa'badilang", gambar:"images/pantai pabadilang.jpg", deskripsi:"Pantai Pabadilang memiliki garis pantai alami dengan suasana sepi di Kepulauan Selayar.", lokasi:"Pa'baddilang, Kab. Kepulauan Selayar, Sulawesi Selatan", harga:"Mulai dari Rp5.000", aktivitas:"Bersantai, Bermain Air, Menyusuri Pantai", rating:"" },
-  { nama:"Pulau Bulupolo", gambar:"images/pulau bulupolo.jpg", deskripsi:"Menawarkan pasir putih bersih, air jernih, dan pemandangan pegunungan.", lokasi:"Harapan, Kec. Malili, Kabupaten Luwu Timur, Sulawesi Selatan", harga:"Mulai dari Rp5.000", aktivitas:"Diving, Snorkeling, Memancing", rating:"" },
-  { nama:"Pulau Kodingareng Keke", gambar:"images/kodingareng keke.jpg", deskripsi:"Memiliki pemandangan laut yang masih terjaga dan tempat yang sempurna untuk snorkeling.", lokasi:"Gusung, P. Kondingareng, Kec. Ujung Tanah, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp20.000", aktivitas:"Berenang, Snorkeling, Menikmati Sunset", rating:"" },
-  { nama:"Pantai Pulau Kayangan", gambar:"images/pantai pulau kayangan.jpg", deskripsi:"Destinasi wisata pantai berpasir putih seluas 1 hektar yang terletak hanya 0,8 km dari pusat kota Makassar.", lokasi:"Lae-Lae, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Gratis", aktivitas:"Memancing, Snorkeling, Menikmati Sunset", rating:"" },
-  { nama:"Pulau Laelae", gambar:"images/pulau laelae.jpg", deskripsi:"Destinasi wisata pantai berpasir putih seluas 1 hektar yang terletak hanya 0,8 km dari pusat kota Makassar.", lokasi:"Lae-Lae, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Gratis", aktivitas:"Memancing, Snorkeling, Menikmati Sunset", rating:"" },
-];
 
-const dataKuliner = [
-  { nama:"Coto Nusantara", gambar:"images/coto.jpg", deskripsi:"Warung coto terkenal dengan kuah kental dan isian daging/jeroan sapi empuk, disajikan dengan ketupat.", lokasi:"Jl. Nusantara Baru No.86, Pattunuang, Kec. Wajo, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp30.000", aktivitas:"Menikmati Coto Khas Makassar", rating:"" },
-  { nama:"Rumah Makan Kapurung ITA", gambar:"images/kapurung.jpg", deskripsi:"Menyajikan kapurung autentik khas Palopo dengan kuah kuning segar, sagu kenyal, dan sayuran lengkap.", lokasi:"Salekoe, Kec. Wara Tim., Kota Palopo, Sulawesi Selatan", harga:"Mulai dari Rp10.000", aktivitas:"Menikmati Kapurung Khas Palopo", rating:"" },
-  { nama:"Konro Karebosi", gambar:"images/konro.jpg", deskripsi:"Hidangan iga sapi bakar dengan tekstur empuk dan cita rasa khas berkat perpaduan rempah Nusantara.", lokasi:"Jl. Gn. Lompobattang No.41-43, Pisang Utara, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp60.000", aktivitas:"Menikmati Konro Khas Makassar", rating:"⭐ 4.3" },
-  { nama:"Palekko 27'e", gambar:"images/palekko.jpg", deskripsi:"Menyajikan masakan khas Bugis, nasu palekko (bebek pedas), terkenal dengan cita rasa pedas yang otentik.", lokasi:"Jl. Akasia, Bulu Pabbulu, Kec. Tempe, Kabupaten Wajo, Sulawesi Selatan", harga:"Mulai dari Rp85.000", aktivitas:"Menikmati Bebek Palekko Khas Wajo", rating:"" },
-  { nama:"Dapur Kue Gambung", gambar:"images/kue gambung.jpg", deskripsi:"Menyajikan kue gambung terbuat dari tepung, gula, telur, air kelapa, dan kelapa parut, rasa kue ini manis.", lokasi:"Suli, Kec. Suli, Kabupaten Luwu, Sulawesi Selatan", harga:"Mulai dari Rp10.000", aktivitas:"Menikmati Kue Gambung Khas Luwu", rating:"" },
-  { nama:"Pallubasa Serigala", gambar:"images/pallubasa.jpeg", deskripsi:"Pallubasa salah satu makanan khas Makassar, Berupa olahan daging dengan kuah yang khas.", lokasi:"Jl. Serigala No.56, Mamajang Dalam, Kec. Mamajang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp39.000", aktivitas:"Menikmati Pallubasa Khas Makassar", rating:"⭐ 4.7" },
-  { nama:"Jalangkote & Lumpia Lasinrang", gambar:"images/lumpia & jalangkote lasinrang.png", deskripsi:"Kuliner legendaris yang terkenal dengan jalangkote dan lumpia-nya renyah, menawarkan cita rasa gurih.", lokasi:"Jl. Lasinrang No.11A, Sawerigading, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp8.000", aktivitas:"Menikmati Aneka Gorengan Lasinrang", rating:"" },
-  { nama:"Cahaya Oleh-Oleh", gambar:"images/cahaya.png", deskripsi:"Kuliner legendaris yang terkenal dengan jalangkote dan lumpia-nya renyah, menawarkan cita rasa gurih.", lokasi:"Jl. Sulawesi No.181, Melayu Baru, Kec. Wajo, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari 19.000", aktivitas:"Berbelanja Oleh-Oleh Khas Makassar", rating:"" },
-  { nama:"Ati Raja", gambar:"images/ati raja.jpg", deskripsi:"Bakso yang dikenal dengan kelezatan dan kualitasnya yang tinggi dibuat dari daging sapi pilihan.", lokasi:"Jl. Gn. Merapi No.170, Lajangiru, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp37.000", aktivitas:"Menikmati Bakso Ati Raja", rating:"⭐ 4.4" },
-  { nama:"Bolu Cukke \"Usaha Rahmah\"", gambar:"images/bolu-cukke-rahmah.jpg", deskripsi:"Bolu Cukke, kue tradisional berbahan tepung beras, gula merah, dan telur dengan tekstur padat lembut.", lokasi:"Jennae, Kec. Lili Riaja, Kabupaten Soppeng, Sulawesi Selatan", harga:"Mulai dari Rp10.000", aktivitas:"Menikmati Bolu Cukke Khas Soppeng", rating:"" },
-  { nama:"Ikan Asap Bu Taty", gambar:"images/ikan asap.jpg", deskripsi:"Ikan asap adalah ikan yang diawetkan dengan proses pengasapan menggunakan asap kayu.", lokasi:"Singa, Kec. Hero Lange-Lange, Kabupaten Bulukumba, Sulawesi Selatan", harga:"Mulai dari Rp40.000", aktivitas:"Menikmati Ikan Asap Khas Bulukumba", rating:"" },
-  { nama:"Kuliner Apang Pella Lawawoi", gambar:"images/appang pella.jpg", deskripsi:"Kue coklat lembut dengan rasa manis legit, disajikan hangat dengan kelapa parut.", lokasi:"Lawawoi, Kec. Watang Pulu, Kabupaten Sidenreng Rappang, Sulawesi Selatan", harga:"Mulai dari Rp10.000", aktivitas:"Menikmati Kue Appang Khas Sidrap", rating:"" },
-  { nama:"Nennu-nennu Qirana", gambar:"images/nennu.jpg", deskripsi:"Helaian tipis seperti benang kusut, digoreng hingga renyah di luar dan lembut di dalam.", lokasi:"Batu-Batu, Kec. Marioriawa, Kabupaten Soppeng, Sulawesi Selatan", harga:"Mulai dari Rp20.000", aktivitas:"Menikmati Makanan Khas Soppeng", rating:"" },
-  { nama:"Oleh-Oleh SumbaOpu", gambar:"images/oleh.jpg", deskripsi:"Pusat oleh-oleh khas Makassar dengan berbagai pilihan makanan dan kerajinan tradisional.", lokasi:"Jl. Nusantara No.18, Pattunuang, Kec. Wajo, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari 20.000", aktivitas:"Berbelanja Oleh-Oleh Khas Makassar", rating:"" },
-  { nama:"Sop Saudara Dzakwan", gambar:"images/sop saudara.jpg", deskripsi:"Hidangan khas Pangkep dengan daging dan kuah santan gurih, disajikan dengan nasi, bandeng bakar.", lokasi:"Jl. Sultan Hasanuddin, Padoang Doangan, Kec. Pangkajene, Kab. Pangkajene Sulawesi Selatan", harga:"Mulai dari Rp25.000", aktivitas:"Menikmati Sop Saudara dan Ikan Bakar", rating:"" },
-  { nama:"Pisang Epe' Mandiri", gambar:"images/pisang.jpg", deskripsi:"Pisang yang dibakar lalu dipipihkan dan disajikan dengan saus gula merah khas yang manis legit.", lokasi:"Jl. Ali Malaka No.45, Maloku, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp10.000", aktivitas:"Menikmati Pisang Epe di Pantai Losari", rating:"" },
-  { nama:"Mie Titi", gambar:"images/mie-titi.jpg", deskripsi:"Mie tipis yang digoreng kering dengan kuah kental berisi seafood dan sayuran, khas Makassar.", lokasi:"Jl. Boulevard Ruko Ruby No.25 Blok 2H, Masale, Panakkukang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp50.000", aktivitas:"Kuliner, Mencicipi mie titi", rating:"" },
-  { nama:"Mantao Pare", gambar:"images/bakpao.jpg", deskripsi:"Mantao Pare adalah roti kukus lembut dan manis khas Parepare.", lokasi:"Labukkang, Kec. Ujung, Kota Parepare, Sulawesi Selatan", harga:"Mulai dari Rp60.000", aktivitas:"Menikmati Mantao Khas Parepare", rating:"" },
-  { nama:"Oleh-Oleh Khas Selayar", gambar:"images/oleh-oleh-selayar.jpg", deskripsi:"Aneka oleh-oleh khas Kepulauan Selayar termasuk makanan laut dan kerajinan tangan.", lokasi:"Jl. Jend. Sudirman No.104, Benteng, Kec. Benteng, Kab. Kepulauan Selayar, Sulawesi Selatan", harga:"Mulai dari 10.000", aktivitas:"Berbelanja Oleh-Oleh Khas Selayar", rating:"" },
-  { nama:"Kepala Ikan Mappanyuki Pallumara", gambar:"images/ikan.jpg", deskripsi:"Kepala ikan segar dimasak dengan kuah pallumara (asam pedas) khas Makassar yang gurih.", lokasi:"Jl. A. Mappanyukki No.36C, Mario, Kec. Mariso, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp45.000", aktivitas:"Menikmati Kelapa Ikan Khas Makassar", rating:"" },
-  { nama:"Futry Bakery & Cake Maros", gambar:"images/futry.jpg", deskripsi:"Futry Bakery & Cake toko roti dan kue dengan berbagai pilihan bakery dan oleh-oleh khas.", lokasi:"Bontoa, Kec. Mandai, Kabupaten Maros, Sulawesi Selatan", harga:"Mulai dari Rp2.750", aktivitas:"Berbelanja roti, kue, dan oleh-oleh", rating:"" },
-  { nama:"Donat Kampar Galesong", gambar:"images/donat-kampar-galesong.jpg", deskripsi:"Donat tradisional dengan tekstur lembut dan rasa manis sederhana, khas disajikan sebagai camilan.", lokasi:"Jl. Poros Galesong Utara, Bontolebang, Kec. Galesong Utara, Kab. Takalar, Sulawesi Selatan", harga:"Mulai dari Rp25.000", aktivitas:"Menikmati Donat Kampar", rating:"" },
-  { nama:"Otak-Otak Sunny", gambar:"images/otak-otak-sunny.jpg", deskripsi:"Toko oleh-oleh khas Makassar yang terkenal dengan otak-otak ikan tenggiri dan aneka jajanan tradisional.", lokasi:"Jl. Singa No.9, Bonto Biraeng, Kec. Mamajang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp105.000", aktivitas:"Berbelanja Otak-Otak Khas Makassar", rating:"" },
-  { nama:"Pisang Ijo Oleh-Oleh Makassar", gambar:"images/pisang ijo.jpg", deskripsi:"Menyediakan pisang ijo khas Makassar dengan rasa manis dan segar.", lokasi:"Jl. Talasalapang No.11, Karunrung, Kec. Rappocini, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp20.000", aktivitas:"Menikmati Pisang Ijo Khas Makassar", rating:"" },
-  { nama:"Dangke Enrekang", gambar:"images/dangke.jpg", deskripsi:"Makanan khas berupa olahan susu kerbau/sapi yang mirip keju, khas dari Enrekang.", lokasi:"Mata Allo, Kec. Alla, Kabupaten Enrekang, Sulawesi Selatan", harga:"Mulai dari Rp15.000", aktivitas:"Menikmati Dangke Khas Enrekang", rating:"" },
-  { nama:"Gratia Tori' (Kue Khas Toraja)", gambar:"images/gratia-tori.jpg", deskripsi:"Kue tradisional dengan cita rasa manis yang sering dijadikan oleh-oleh.", lokasi:"Lapandan, Kec. Makale, Kabupaten Tana Toraja, Sulawesi Selatan", harga:"Mulai dari Rp45.000", aktivitas:"Menikmati Gratia Tori' Khas Toraja", rating:"" },
-  { nama:"Putu Cangkir", gambar:"images/putu-cangkir.jpg", deskripsi:"Putu Cangkiri Makassar jajanan tradisional berbahan tepung beras dengan rasa manis dan tekstur lembut.", lokasi:"Jl. Sultan Alauddin, Pa'baeng-Baeng, Kec. Tamalate, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp2.500", aktivitas:"Menikmati Putu Cangkir Khas Makassar", rating:"" },
-  { nama:"Sop Ubi", gambar:"images/sop-ubi.jpg", deskripsi:"Sop Ubi Makassar kuliner khas berupa sup ubi dengan kuah gurih dan isian lengkap yang populer di Makassar.", lokasi:"Jl. Minasa Upa No.8D Blok A5, Karunrung, Rappocini, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp10.000", aktivitas:"Menikmati Sop Ubi Khas Makassar", rating:"" },
-  { nama:"Coto Kuda", gambar:"images/coto-kuda.jpg", deskripsi:"Coto Kuda Jeneponto kuliner khas dengan kuah gurih berbahan daging kuda, terkenal di daerah Jeneponto.", lokasi:"Belokallong, Balang Toa, Kec. Binamu, Kabupaten Jeneponto, Sulawesi Selatan", harga:"Mulai dari Rp22.000", aktivitas:"Menikmati Coto Kuda Khas Jeneponto", rating:"" },
-  { nama:"Bebek Palekko", gambar:"images/bebek-palekko.jpg", deskripsi:"Bebek Palekko khas Sidrap kuliner pedas berbahan bebek dengan bumbu khas Bugis yang kuat.", lokasi:"Jalan PLN, Arawa, Kec. Watang Pulu, Kabupaten Sidenreng Rappang, Sulawesi Selatan", harga:"Mulai dari Rp25.000", aktivitas:"Menikmati Bebek Palekko Khas Sidrap", rating:"" },
-  { nama:"Sarabba Sungai Cerekan", gambar:"images/sarabba.jpg", deskripsi:"Minuman khas Makassar, yang berbahan dasar jahe, gula aren, santan, dan kuning telur.", lokasi:"Jl. Sungai Cerekang No.33-29, Gaddong, Kec. Bontoala, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp10.000", aktivitas:"Menikmati Sarabba Khas Makassar", rating:"" },
-];
-
-const dataMuseum = [
-  { nama:"Museum Batara Guru", gambar:"images/museum batara guru.jpg", deskripsi:"Museum bekas Istana Raja Luwu dengan arsitektur Eropa dan koleksi benda bersejarah kerajaan.", lokasi:"Jl. Andi Jemma No.1, Kel. Batupasi, Kecamatan Wara Utara, Kota Palopo, Sulawesi Selatan", harga:"Sukarela", aktivitas:"Menjelajah Koleksi, Belajar Sejarah", rating:"" },
-  { nama:"Museum Nekara", gambar:"images/museum nekara.jpg", deskripsi:"Menyimpan peninggalan budaya, terutama koleksi Nekara perunggu, salah satu terbesar di Asean.", lokasi:"Bontobangung, Kec. Bontoharu, Kab. Kepulauan Selayar, Sulawesi Selatan", harga:"Mulai dari Rp5.000", aktivitas:"Menjelajah Koleksi, Belajar Sejarah", rating:"" },
-  { nama:"Benteng Rotterdam", gambar:"images/benteng rotterdam.jpg", deskripsi:"Benteng Rotterdam atau Benteng Ujung Pandang adalah benteng peninggalan Kerajaan Gowa-Tallo.", lokasi:"Jl. Ujung Pandang, Bulo Gading, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp5.000", aktivitas:"Walking Tour, Budaya, Edukasi", rating:"⭐ 4.5" },
-  { nama:"Museum Kupu-kupu Bantimurung", gambar:"images/museum kupu bantimurung.jpg", deskripsi:"Museum ini menyimpan ratusan jenis kupu-kupu yang telah diawetkan, total mencapai sekitar 166 jenis.", lokasi:"Kawasan TWA Bantimurung, Desa Jenetaesa, Kec. Simbang, Kab. Maros, Sulawesi Selatan", harga:"WNI Rp5.000 dan WNA Rp150.000", aktivitas:"Menjelajah Koleksi, Belajar Sejarah", rating:"" },
-  { nama:"Museum Colliq Pujie", gambar:"images/Museum Colliq Pujie.jpg", deskripsi:"Menyuguhkan narasi perjalanan intelektual Colliq Pujie, termasuk visualisasi digital warisan budaya Barru.", lokasi:"Alun-alun kota, Barru, Kabupaten Barru, Sulawesi Selatan", harga:"Dewasa Rp15.000 dan Anak Rp5.000", aktivitas:"Menjelajah Koleksi, Belajar Sejarah", rating:"" },
-  { nama:"Monumen Mandala", gambar:"images/monumen mandala.png", deskripsi:"Monumen ini menyimpan koleksi penting, seperti relief, 24 diorama, pakaian perjuangan, dan senjata.", lokasi:"Jl. Jend. Sudirman, Sawerigading, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp5.000", aktivitas:"Edukasi Sejarah, Eksplorasi Monumen", rating:"⭐ 4.5" },
-  { nama:"Museum Karaeng Pattingalloang", gambar:"images/Museum Karaeng Pattingalloang.jpg", deskripsi:"Museum ini menyimpan benda-benda peninggalan bersejarah Kerajaan Gowa-Tallo.", lokasi:"Jl. Abd. Kadir, Benteng Somba Opu, Kec. Barombong, Kabupaten Gowa, Sulawesi Selatan", harga:"Dewasa Rp3.000 dan Anak Rp2.000", aktivitas:"Menjelajah Koleksi, Belajar Sejarah", rating:"" },
-  { nama:"Museum Ne'Gandeng", gambar:"images/Museum Ne_ Gandeng.jpg", deskripsi:"Koleksi Museum Ne' Gandeng berupa batu menhir, patung Ne' Gandeng, patung kerbau, dan gong belang.", lokasi:"Malakiri, Tagari, Kec. Balusu, Kabupaten Toraja Utara, Sulawesi Selatan", harga:"Mulai dari Rp10.000", aktivitas:"Menjelajah Koleksi, Belajar Sejarah", rating:"" },
-  { nama:"Museum Daerah Maros", gambar:"images/Museum Daerah Maros.jpg", deskripsi:"Koleksi foto dan benda-benda yang berhubungan dengan sejarah, kebudayaan, dan arkeologi di Maros.", lokasi:"Jl. Lanto Dg. Pasewang, Pettuadae, Kec. Turikale, Kabupaten Maros, Sulawesi Selatan", harga:"Dewasa Rp15.000, Anak Rp5.000, WNA Rp50.000", aktivitas:"Menjelajah Koleksi, Belajar Sejarah", rating:"" },
-  { nama:"Benteng Somba Opu", gambar:"images/benteng somba opu (1).jpg", deskripsi:"Benteng peninggalan Kesultanan Gowa yang dibangun oleh Raja Gowa ke-9 pada tahun 1525.", lokasi:"Jl. Daeng Tata, Benteng Somba Opu, Kec. Barombong, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp3.000", aktivitas:"Menjelajah Koleksi, Belajar Sejarah", rating:"" },
-  { nama:"Museum Buntu Kalando", gambar:"images/Museum Buntu Kalando.jpg", deskripsi:"Museum ini menjadi tempat pelestarian benda-benda peninggalan budaya Tana Toraja.", lokasi:"RW.lobe, Tongko Sarapung, Kec. Sangalla, Kabupaten Tana Toraja, Sulawesi Selatan", harga:"Gratis", aktivitas:"Fotografi, Eksplorasi Budaya Toraja", rating:"⭐ 4.2" },
-  { nama:"Museum Kota Makassar", gambar:"images/museum kota makassar.jpg", deskripsi:"Menyimpan informasi bersejarah mengenai identitas Kota Makassar, sejarah, dan budaya masyarakatnya.", lokasi:"Jl. Balaikota No.11, Baru, Kec. Ujung Pandang, Kota Makassar, Sulawesi Selatan", harga:"Mulai dari Rp10.000", aktivitas:"Menjelajah Koleksi, Belajar Sejarah", rating:"" },
-  { nama:"Museum Pongtiku Rantepao", gambar:"images/museum pontingku rantepao.jpg", deskripsi:"Pelestarian koleksi yang menggambarkan sejarah, budaya, serta nilai tradisi masyarakat suku Toraja.", lokasi:"Jl. Landorundun No.21, Penanian, Kec. Rantepao, Kabupaten Toraja Utara, Sulawesi Selatan", harga:"Secara sukarela", aktivitas:"Menjelajah Koleksi, Belajar Sejarah", rating:"" },
-  { nama:"Museum Nene' Mallomo", gambar:"images/Museum Nene_ Mallomo.jpg", deskripsi:"Museum kebanggaan masyarakat Sidrap, untuk mengenang warisan budaya serta sejarah peradaban masyarakat Bugis.", lokasi:"Jl. Usman Isa, Pangkajene, Kec. Maritengngae, Kab. Sidenreng Rappang, Sulawesi Selatan", harga:"Gratis", aktivitas:"Menjelajah Koleksi, Belajar Sejarah", rating:"" },
-  { nama:"Museum Saoraja Mallangga", gambar:"images/Museum Saoraja Mallangga.jpg", deskripsi:"Menyimpan peninggalan kerajaan, terletak di pusat kota Sengkang, didirikan tahun 1933.", lokasi:"Jl. Ahmad Yani No. 25, Kel. Padduppa, Kec. Tempe, Kabupaten Wajo, Sulawesi Selatan", harga:"Gratis", aktivitas:"Menjelajah Koleksi, Belajar Sejarah", rating:"" },
-  { nama:"Museum BJ Habibie", gambar:"images/museum bj habibie.jpg", deskripsi:"Memamerkan barang-barang pribadi, baju, serta penghargaan yang diraih oleh B.J. Habibie dan Ibu Ainun.", lokasi:"Jl. Alwi Abdul Djalil Habibie No.1, Mallusetasi, Kec. Ujung, Kota Parepare, Sulawesi Selatan", harga:"Gratis", aktivitas:"Menjelajah Koleksi, Belajar Sejarah", rating:"" },
-  { nama:"Museum Landorundun", gambar:"images/museum-landorundun.png", deskripsi:"Museum khusus yang memamerkan benda-benda tentang Suku Toraja, yang dibangun pada tahun 1995.", lokasi:"Jl. Usman Isa, Pangkajene, Kec. Maritengngae, Kab. Sidenreng Rappang, Sulawesi Selatan", harga:"Dewasa Rp15.000, Anak Rp5.000, WNA Rp50.000", aktivitas:"Menjelajah Koleksi, Belajar Sejarah", rating:"" },
-  { nama:"Museum Villa Yuliana", gambar:"images/Museum Villa Yuliana.jpg", deskripsi:"Bangunan dengan arsitektur unik dan warna mencolok, campuran antara arsitektur neo-klasik Eropa dan Bugis.", lokasi:"Jl. Pengayoman, No. 1, Kel.Botto, Kec.Lalabata, Watansoppeng, Soppeng, Sulawesi Selatan", harga:"Dewasa Rp25.000 dan Anak Rp20.000", aktivitas:"Menjelajah Koleksi, Belajar Sejarah", rating:"" },
-  { nama:"Taman Budaya dan Museum Bumi Lasinrang", gambar:"images/Taman Budaya dan Museum Bumi Lasinrang.jpg", deskripsi:"Pusat pelestarian warisan budaya, sejarah lokal, dan edukasi, untuk memperkuat identitas budaya muda.", lokasi:"Jl. Jend. Soekawati, Watang Sawitto, Kab. Pinrang, Sulawesi Selatan", harga:"Mulai dari Rp2.000", aktivitas:"Menjelajah Koleksi, Belajar Sejarah", rating:"" },
-  { nama:"Museum Balla Lompoa", gambar:"images/balla lompoa.jpg", deskripsi:"Museum Balla Lompoa adalah museum budaya yang menyimpan peninggalan Kerajaan Gowa di Sungguminasa.", lokasi:"Jl. K. H. Wahid Hasyim No.39, Sungguminasa, Kec. Somba Opu, Kabupaten Gowa, Sulawesi Selatan", harga:"Mulai dari Rp2.000", aktivitas:"Menjelajah Koleksi, Belajar Sejarah", rating:"" },
-];
-
-/* ══════════════════════════════
-   SVG ICONS
-══════════════════════════════ */
-const igSvg = `<svg viewBox="0 0 24 24" fill="white" width="13" height="13"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>`;
-const waSvg = `<svg viewBox="0 0 24 24" fill="white" width="13" height="13"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
-
-function destFooterHTML() {
-  return `
-  <div class="dest-footer">
-    <div class="dest-footer-top">
-      <img src="images/Logo LontaraTrip (potong).png" alt="Logo"
-           style="width:30px;height:30px;object-fit:cover;border-radius:50%;flex-shrink:0;"
-           onerror="this.style.display='none'"/>
-      <p class="dest-footer-desc">Smart Itinerary untuk merencanakan perjalanan terbaik di Sulawesi Selatan secara mudah dan personal.</p>
+const footerHTML = `
+  <div class="footer">
+    <div class="footer-top">
+      <img class="footer-logo-img" src="images/Logo LontaraTrip (potong).png" onerror="this.style.display='none'" alt="Logo"/>
+      <p class="footer-desc">Smart Itinerary untuk merencanakan perjalanan terbaik di Sulawesi Selatan secara mudah dan personal.</p>
     </div>
-    <div class="dest-footer-grid">
-      <div>
-        <div class="dfcol-title">Kontak</div>
-        <div class="dfcol-item">Makassar, Sulawesi Selatan, Indonesia</div>
-        <div class="dfcol-item"><a href="mailto:lontaratrip@gmail.com">lontaratrip@gmail.com</a></div>
-        <div class="dfcol-item">0825-1436-2226</div>
-        <div class="dest-social-row">
-          <div class="dsoc-btn dsoc-ig soc-ig">${igSvg}</div>
-          <div class="dsoc-btn dsoc-wa soc-wa">${waSvg}</div>
+    <div class="footer-grid">
+      <div class="fcol">
+        <h4>Kontak</h4>
+        <p>Makassar, Sulawesi Selatan, Indonesia</p>
+        <a href="mailto:lontaratrip@gmail.com">lontaratrip@gmail.com</a>
+        <p>0825-1436-2226</p>
+        <div class="social-row">
+          <div class="soc-btn soc-ig">${igSvg}</div>
+          <div class="soc-btn soc-wa">${waSvg}</div>
         </div>
       </div>
-      <div>
-        <div class="dfcol-title">Kebijakan S&amp;K</div>
-        <div class="dfcol-item">• Kebijakan Privasi &amp; Keamanan</div>
-        <div class="dfcol-item">• Kebijakan Penggunaan Website</div>
+      <div class="fcol">
+        <h4>Kebijakan S&K</h4>
+        <p>• Kebijakan Privasi & Keamanan</p>
+        <p>• Kebijakan Penggunaan Website</p>
       </div>
     </div>
-    <div class="dest-footer-copy">© 2026 LontaraTrip. All Rights Reserved. | Made with <span class="heart">♥</span> in Indonesia</div>
+    <div class="footer-copy">© 2026 LontaraTrip. All Rights Reserved. | Made with <span class="heart">♥</span> in Indonesia</div>
   </div>`;
-}
+
 
 /* ══════════════════════════════
-   BUILD DEST CARDS
-══════════════════════════════ */
-function buildDestCards(data, kategori, containerId, footerId) {
-  const wrap = document.getElementById(containerId);
-  if (wrap.childElementCount > 0) return; // already built
-  let html = '';
-  data.forEach(item => {
-    const nama = item.nama.replace(/'/g, "\\'");
-    html += `
-      <div class="dcard">
-        <div class="dcard-img">
-          <img src="${item.gambar}" alt="${item.nama}"
-               onerror="this.src='https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=200&fit=crop'"/>
-          <div class="dcard-img-label">
-            <strong style="font-size:10px;color:#000">${item.nama}</strong><br>
-            <span style="font-size:10px;color:#555">${kategori}</span>
-          </div>
-        </div>
-        <div class="dcard-info">
-          ${item.rating ? `<div class="dcard-rating">${item.rating}</div>` : ''}
-          <h3>${item.nama}</h3>
-          <p>${item.deskripsi}</p>
-          <p>📍 ${item.lokasi}</p>
-          <p>💰 Harga: ${item.harga}</p>
-          <p>🎯 Aktivitas: ${item.aktivitas}</p>
-          <button class="dcard-btn" onclick="tambah('${nama}')">Tambahkan ke Itinerary</button>
-        </div>
-      </div>`;
-  });
-  wrap.innerHTML = html;
-  document.getElementById(footerId).innerHTML = destFooterHTML();
-}
-
-/* ══════════════════════════════
-   BUILD POPULER CARDS
+   BUILD POPULAR CARDS
 ══════════════════════════════ */
 (function buildPop() {
   const wrap = document.getElementById('popScroll');
@@ -1286,7 +1207,7 @@ function buildDestCards(data, kategori, containerId, footerId) {
           <div class="pop-card-name">${d.nama}</div>
           <div class="pop-card-type">${d.type}</div>
           <div class="pop-card-rating">
-            <span class="star">☆</span>
+            <span class="star">⭐</span>
             <span class="rnum">${d.rating}</span>
           </div>
         </div>
@@ -1294,12 +1215,10 @@ function buildDestCards(data, kategori, containerId, footerId) {
   });
 })();
 
+
 /* ══════════════════════════════
    BUILD REKOM CARDS
 ══════════════════════════════ */
-const igSvgFull = `<svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>`;
-const waSvgFull = `<svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
-
 function buildRekom() {
   const body = document.getElementById('rekomBody');
   if (body.childElementCount > 0) return;
@@ -1309,7 +1228,8 @@ function buildRekom() {
       <div class="rekom-card">
         <div class="rekom-img-col">
           <img src="${d.img}" alt="${d.nama}" onerror="this.src='${d.fb}'"/>
-          <div class="rimg-label">${d.nama}</div>
+        <span style="font-size:10px;font-weight:700;color:#333;line-height:1.3;display:block;">${d.nama}</span>
+<span style="font-size:9px;font-weight:400;color:#777;line-height:1.3;margin-top:2px;display:block;">${d.kategori}</span>
         </div>
         <div class="rekom-info-col">
           <div class="rekom-rating-badge">
@@ -1325,33 +1245,10 @@ function buildRekom() {
         </div>
       </div>`;
   });
-  html += `
-    <div class="footer" style="margin-top:4px">
-      <div class="footer-top">
-        <img class="footer-logo-img" src="images/Logo LontaraTrip (potong).png" onerror="this.style.display='none'" alt="Logo"/>
-        <p class="footer-desc">Smart Itinerary untuk merencanakan perjalanan terbaik di Sulawesi Selatan secara mudah dan personal.</p>
-      </div>
-      <div class="footer-grid">
-        <div class="fcol">
-          <h4>Kontak</h4>
-          <p>Makassar, Sulawesi Selatan, Indonesia</p>
-          <a href="mailto:lontaratrip@gmail.com">lontaratrip@gmail.com</a>
-          <p>0825-1436-2226</p>
-          <div class="social-row">
-            <div class="soc-btn soc-ig">${igSvgFull}</div>
-            <div class="soc-btn soc-wa">${waSvgFull}</div>
-          </div>
-        </div>
-        <div class="fcol">
-          <h4>Kebijakan S&K</h4>
-          <p>• Kebijakan Privasi &amp; Keamanan</p>
-          <p>• Kebijakan Penggunaan Website</p>
-        </div>
-      </div>
-      <div class="footer-copy">© 2026 LontaraTrip. All Rights Reserved. | Made with <span class="heart">♥</span> in Indonesia</div>
-    </div>`;
+  html += footerHTML;
   body.innerHTML = html;
 }
+
 
 /* ══════════════════════════════
    PAGE NAVIGATION
@@ -1362,7 +1259,9 @@ function showPage(id) {
   window.scrollTo(0, 0);
 }
 
+
 function showLogin()  { showPage('page-login'); }
+
 
 function showHome() {
   showPage('page-home');
@@ -1370,56 +1269,22 @@ function showHome() {
   document.querySelector('#home-nav li:first-child').classList.add('active');
 }
 
+
 function showRekom() {
   buildRekom();
   showPage('page-rekom');
 }
 
-/* showDest: buka page-dest dan langsung aktifkan tab yg diminta */
-function showDest(tab) {
-  showPage('page-dest');
-  // reset semua tab
-  document.querySelectorAll('.dest-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.dest-panel').forEach(p => p.classList.remove('active'));
-  // aktifkan tab & panel yg diminta
-  const tabEl = document.querySelector(`.dest-tab[onclick*="${tab}"]`);
-  if (tabEl) tabEl.classList.add('active');
-  const panel = document.getElementById('panel-' + tab);
-  if (panel) panel.classList.add('active');
-  // build kartu kalau belum ada
-  buildDestPanel(tab);
-}
-
-function buildDestPanel(tab) {
-  const map = {
-    pegunungan: { data: dataPegunungan, label: 'Pegunungan' },
-    pantai:     { data: dataPantai,     label: 'Pantai'     },
-    kuliner:    { data: dataKuliner,    label: 'Kuliner'    },
-    museum:     { data: dataMuseum,     label: 'Museum'     },
-  };
-  const m = map[tab];
-  if (m) buildDestCards(m.data, m.label, 'cards-' + tab, 'footer-' + tab);
-}
-
-function switchTab(el, tab) {
-  document.querySelectorAll('.dest-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.dest-panel').forEach(p => p.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('panel-' + tab).classList.add('active');
-  buildDestPanel(tab);
-  window.scrollTo(0, 0);
-}
 
 function homeNav(el, target) {
   document.querySelectorAll('#home-nav li').forEach(li => li.classList.remove('active'));
   el.classList.add('active');
-  if (target === 'rekom')       showRekom();
-  else if (target === 'dest')   showDest('pegunungan');
-  else {
-    showPage('page-home');
+  if (target === 'rekom') { showRekom(); }
+  else if (target === 'dest') {
     document.getElementById('destSection').scrollIntoView({ behavior:'smooth' });
   }
 }
+
 
 /* ══════════════════════════════
    LOADING
@@ -1429,6 +1294,7 @@ function loading(ms, cb) {
   el.classList.add('show');
   setTimeout(() => { el.classList.remove('show'); if (cb) cb(); }, ms);
 }
+
 
 /* ══════════════════════════════
    LOGIN
@@ -1460,6 +1326,7 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Enter' && document.getElementById('page-login').classList.contains('active')) doLogin();
 });
 
+
 /* ══════════════════════════════
    TOAST
 ══════════════════════════════ */
@@ -1468,6 +1335,7 @@ function showToast(msg) {
   t.textContent = msg; t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 2800);
 }
+
 
 /* ══════════════════════════════
    HOME HELPERS
@@ -1480,12 +1348,14 @@ function pickChip(el) {
   el.classList.add('active');
 }
 
+
 /* ══════════════════════════════
-   TAMBAH KE ITINERARY
+   REKOM
 ══════════════════════════════ */
 function tambah(nama) {
   showToast(nama + ' ditambahkan ke Itinerary! ✅');
 }
+
 
 /* ══════════════════════════════
    PROFILE PHOTO UPLOAD
@@ -1500,13 +1370,9 @@ document.getElementById('profileInput').addEventListener('change', function() {
   photo.style.display = 'block';
   icon.style.display  = 'none';
 });
-
-/* Pre-build panel pegunungan saat load (tab default) */
-window.addEventListener('load', () => {
-  buildDestPanel('pegunungan');
-});
 </script>
 </body>
 </html>
+
 
 
