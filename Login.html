@@ -60,6 +60,7 @@
     }
     .hero-sub { font-size: .75rem; color: rgba(255,255,255,.88); margin-bottom: 14px; line-height: 1.5; }
 
+
     /* Tombol Buat Itinerary — tanpa fungsi, tampilan tetap sama */
     .btn-hero {
       background: #3d5a2e; color: white; border: none;
@@ -67,6 +68,7 @@
       font-size: .84rem; font-weight: 700; font-family: inherit;
       cursor: default; /* tidak ada pointer klik */
     }
+
 
     .section-smart { background: white; padding: 18px 14px 22px; }
     .section-title {
@@ -104,6 +106,7 @@
     .soc-wa { background: #25d366; }
     .footer-copy { border-top: 1px solid rgba(0,0,0,.09); padding-top: 9px; font-size: .6rem; color: #999; text-align: center; line-height: 1.8; }
     .heart { color: #e53935; }
+
 
     /* LOGIN PAGE */
     #page-login { min-height: 100vh; background: #fffBE5; flex-direction: column; }
@@ -147,6 +150,7 @@
 <body>
 <div class="app">
 
+
   <!-- ══ LANDING PAGE ══ -->
   <div id="page-landing">
     <nav class="navbar">
@@ -164,6 +168,7 @@
       <button class="btn-nav-login" onclick="showLogin()">Login</button>
     </nav>
 
+
     <div class="hero">
       <img src="images/wp login.jpg" alt="Sulawesi Selatan"
            onerror="this.src='https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=800&q=80'"/>
@@ -172,11 +177,14 @@
         <div class="hero-title">Selamat Datang di LontaraTrip</div>
         <div class="hero-sub">Rencanakan perjalanan cerdas ke Sulawesi Selatan</div>
 
+
         <!-- ✅ Tombol Buat Itinerary — TANPA onclick, tidak berfungsi -->
         <button class="btn-hero">Buat Itinerary</button>
 
+
       </div>
     </div>
+
 
     <div class="section-smart">
       <div class="section-title">Smart Itinerary Sulsel</div>
@@ -226,6 +234,7 @@
       </div>
     </div>
 
+
     <footer>
       <div class="footer-desc" style="display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;">
         <img src="images/Logo LontaraTrip (potong).png"
@@ -235,6 +244,7 @@
           Smart Itinerary untuk merencanakan perjalanan terbaik di Sulawesi Selatan secara mudah dan personal.
         </p>
       </div>
+
 
       <div class="footer-grid">
         <div>
@@ -264,12 +274,15 @@
         </div>
       </div>
 
+
       <div class="footer-copy">
         © 2026 LontaraTrip. All Rights Reserved. &nbsp;|&nbsp; Made with <span class="heart">♥</span> in Indonesia
       </div>
     </footer>
   </div>
   <!-- ══ END LANDING ══ -->
+
+
 
 
   <!-- ══ LOGIN PAGE ══ -->
@@ -310,6 +323,8 @@
   <!-- ══ END LOGIN ══ -->
 
 
+
+
   <!-- Loading overlay -->
   <div class="loading-overlay" id="loading-overlay">
     <div class="loading-box">
@@ -322,13 +337,17 @@
     </div>
   </div>
 
+
 </div><!-- /app -->
+
+
 
 
 <script>
   const landingEl = document.getElementById('page-landing');
   const loginEl   = document.getElementById('page-login');
   const loadEl    = document.getElementById('loading-overlay');
+
 
   function showLogin() {
     landingEl.style.display = 'none';
@@ -373,3 +392,4 @@
 </script>
 </body>
 </html>
+
